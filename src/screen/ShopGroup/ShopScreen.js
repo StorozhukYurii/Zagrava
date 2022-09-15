@@ -1,11 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import Container from '../../components/Container';
 
-const ShopScreen = () => {
+export const ShopScreen = () => {
 return(
-<View>
-<Text>Hello</Text>
-</View>
+    <Container>
+        
+    </Container>
 )
 }
 

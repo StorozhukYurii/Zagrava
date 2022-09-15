@@ -1,11 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import Container from '../../components/Container';
 
-const ChatScreen = () => {
+export const ChatScreen = () => {
   return (
-    <View>
-      <Text>Hello</Text>
-    </View>
+    <Container>
+      
+    </Container>
   );
 };
 

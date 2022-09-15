@@ -11,7 +11,13 @@ const TabNavigatorChat = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name={screens.Chat} component={ChatScreen} />
+      <Stack.Screen
+        name={screens.Chat}
+        component={ChatScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

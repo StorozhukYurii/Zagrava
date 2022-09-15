@@ -11,6 +11,7 @@ import TabNavigatorMain from './stack/TabNavigatorMain'
 import TabNavigatorProfile from './stack/TabNavigatorProfile'
 import TabNavigatorSelling from './stack/TabNavigatorSelling'
 import TabNavigatorPurchaseHistory from './stack/TabNavigatorPurchaseHistory'
+import TabNavigatorIcon from './components/TabNavigatorIcon';
 
 const Tab = createBottomTabNavigator()
 
@@ -21,18 +22,70 @@ const TabNavigator = () => {
 
 return(
     <Tab.Navigator
-        initialRouteName={screens.MainTab}
-        screenOptions={{
+        initialRouteName={screens.ShopTab}
+        screenOptions={({route}) => ({
             headerShown:false,
-            headerTransparent: true,
-            tabBarActiveBackgroundColor: 'transparent',
-          }}>
+            tabBarShowLabel:false,
+            tabBarIcon:({focused, pressed, color}) => {
+                switch(route.name){
+                    case screens.MainTab:
+                        return (
+                            <TabNavigatorIcon
+                            focused={focused}
+                            pressed={pressed}
+                            title='Main'
+                            name={focused || pressed ? "home" : "home-outline"}
+                            />
+                        )
+                    case screens.ChatTab:
+                        return (
+                            <TabNavigatorIcon
+                            focused={focused}
+                            pressed={pressed}
+                            title='Chat'
+                            name={focused || pressed ? "chatbubble" : "chatbubble-outline"}
+                            />
+                        )
+                    case screens.ShopTab:
+                        return (
+                            <TabNavigatorIcon
+                            focused={focused}
+                            pressed={pressed}
+                            title='Store'
+                            name={focused || pressed ? "planet" : "planet-outline"}
+                            />
+                        )
+                    case screens.PurchaseHistoryTab:
+                        return (
+                            <TabNavigatorIcon
+                            focused={focused}
+                            pressed={pressed}
+                            title='Purchases'
+                            name={focused || pressed ? "basket" : "basket-outline"}
+                            />
+                        )
+                    case screens.ProfileTab:
+                        return (
+                            <TabNavigatorIcon
+                            focused={focused}
+                            pressed={pressed}
+                            title='Profile'
+                            name={focused || pressed ? "person" : "person-outline"}
+                            />
+                        )
+                    default:
+                        break
+                }
+            }
+            // headerTransparent: true,
+            // tabBarActiveBackgroundColor: 'transparent',
+          })}>
     <Tab.Screen
         name={screens.MainTab}
         component={TabNavigatorMain}
         options
     />
-    {/* <Tab.Screen
+    <Tab.Screen
         name={screens.ChatTab}
         component={TabNavigatorChat}
         options
@@ -51,7 +104,7 @@ return(
         name={screens.ProfileTab}
         component={TabNavigatorProfile}
         options
-    /> */}
+    />
     </Tab.Navigator>
 )
 }
