@@ -13,7 +13,7 @@ const Container = memo(({children}) => {
 const styles = StyleSheet.create({
     container:{
         backgroundColor:colors.white,
-        flex:1
+        flex:1,
     }
 })
 
