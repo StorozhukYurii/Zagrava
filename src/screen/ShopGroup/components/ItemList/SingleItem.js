@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -11,7 +11,8 @@ import {
 import {colors, dimension} from '../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const SingleItem = memo(({item}) => {
+const SingleItem = memo(({item, addToBasket, onToggleLike,}) => {
+
   return (
     <View style={{flex: 1}}>
       <View style={styles.topContainer}>
@@ -51,11 +52,11 @@ const SingleItem = memo(({item}) => {
         </View>
         <View style={styles.bottomIconPriceContainer}>
           <View style={styles.bottomIconContainer}>
-            <TouchableOpacity>
-              <Ionicons
-                name={'heart-outline'}
+            <TouchableOpacity onPress={() => onToggleLike(item.id)}>
+              <Ionicons 
+                name={item.like ? 'heart' : 'heart-outline'}
                 size={30}
-                color={colors.darkGrey}
+                color={item.like ? colors.main : colors.darkGrey}
               />
             </TouchableOpacity>
             <TouchableOpacity>
@@ -73,7 +74,7 @@ const SingleItem = memo(({item}) => {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.priceContainer}>
+          <TouchableOpacity onPress={addToBasket} style={styles.priceContainer}>
             <Text>{item.price} $</Text>
           </TouchableOpacity>
         </View>

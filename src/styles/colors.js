@@ -6,4 +6,5 @@ export default {
     silver:'#C0C0C0',
     darkGrey:'#A9A9A9',
     gold:'#FFD700',
+    red:'red'
 }

@@ -11,15 +11,27 @@ import ItemList from './components/ItemList/ItemList';
 
 
 export const ShopScreen = () => {
+    const [status, setStatus] = useState('All');
+    const setStatusFilter = status => {
+      setStatus(status);
+    };
 
     const [text, onChangeText] = useState('')
 
+    const [dataList, setDataList] = useState(DATA_ITEM)
+
+    const [counter, setCounter] = useState(0)
+
+    const addToBasket = () => {
+        setCounter(counter + 1)
+    }
+
 return(
     <Container>
-        <SearchInput onChangeText={onChangeText} text={text}/>
-        <FilterListTab DATA_LIST_TAB={DATA_LIST_TAB}/>
+        <SearchInput onChangeText={onChangeText} text={text} counter={counter}/>
+        <FilterListTab DATA_LIST_TAB={DATA_LIST_TAB} status={status} setStatusFilter={setStatusFilter}/>
         <Separator small/>
-        <ItemList DATA_ITEM={DATA_ITEM}/>
+        <ItemList DATA_ITEM={DATA_ITEM} addToBasket={addToBasket}/>
     </Container>
 )
 }

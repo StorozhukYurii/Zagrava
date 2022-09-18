@@ -11,7 +11,9 @@ import {colors, dimension} from '../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Separator from '../../../../components/Separator';
 
-const ListingItems = memo(({item}) => {
+const ListingItems = memo(({item, addToBasket,onToggleLike}) => {
+
+
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity activeOpacity={0.9} style={{width:dimension.width/2.15}}>
@@ -37,11 +39,11 @@ const ListingItems = memo(({item}) => {
         </View>
         <View style={styles.bottomContainer}>
           <View style={{flexDirection:'row', justifyContent:'space-between', width:dimension.width/5}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> onToggleLike(item.id)}>
               <Ionicons
-                name={'heart-outline'}
+                name={item.like ? 'heart' :'heart-outline'}
                 size={22}
-                color={colors.darkGrey}
+                color={item.like ? colors.main : colors.darkGrey}
               />
             </TouchableOpacity>
             <TouchableOpacity>
@@ -60,7 +62,7 @@ const ListingItems = memo(({item}) => {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.priceContainer}>
+          <TouchableOpacity onPress={addToBasket} style={styles.priceContainer}>
             <Text style={{color: colors.white}}>{item.price}$</Text>
           </TouchableOpacity>
         </View>

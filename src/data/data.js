@@ -10,6 +10,7 @@ export const DATA_ITEM = [
         history:'In the mythology of the Irish Celts, Morrigan was one of a whole group of Irish warrior goddesses. She can be perceived both as a separate deity and as a kind of trinity goddess. The goddess herself did not take part in the battles, but she was certainly present on the battlefield and used all her power to help one side or another.',
         rating:'4.5',
         type:'Wicca',
+        like:false,
     },
     {
         id:'2',
@@ -21,6 +22,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.4',
         type:'Celtic god',
+        like:false,
     },
     {
         id:'3',
@@ -32,6 +34,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'5.0',
         type:'Celtic god',
+        like:false,
     },
     {
         id:'4',
@@ -43,6 +46,7 @@ export const DATA_ITEM = [
         material:'Pine',
         rating:'4.1',
         type:'Celtic god',
+        like:false,
     },
     {
         id:'5',
@@ -54,6 +58,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.8',
         type:'Scandinavian god',
+        like:false,
     },
     {
         id:'6',
@@ -65,6 +70,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.3',
         type:'Scandinavian god',
+        like:false,
     },
     {
         id:'7',
@@ -76,6 +82,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.4',
         type:'Wicca',
+        like:false,
     },
     {
         id:'8',
@@ -87,6 +94,7 @@ export const DATA_ITEM = [
         material:'Pine',
         rating:'3.5',
         type:'Scandinavian god',
+        like:false,
     },
     {
         id:'9',
@@ -98,6 +106,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.5',
         type:'Scandinavian god',
+        like:false,
     },
     {
         id:'10',
@@ -109,6 +118,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.0',
         type:'Scandinavian god',
+        like:false,
     },
     {
         id:'11',
@@ -120,6 +130,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.1',
         type:'Sumerian',
+        like:false,
     },
     {
         id:'12',
@@ -131,6 +142,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.7',
         type:'Scandinavian god',
+        like:false,
     },
     {
         id:'13',
@@ -142,6 +154,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'3.8',
         type:'Candel holders',
+        like:false,
     },
     {
         id:'14',
@@ -153,6 +166,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.5',
         type:'Candel holders',
+        like:false,
     },
     {
         id:'15',
@@ -164,6 +178,7 @@ export const DATA_ITEM = [
         material:'Oak',
         rating:'4.8',
         type:'Ancient Greece',
+        like:false,
     },
    
     
