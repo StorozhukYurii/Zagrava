@@ -14,7 +14,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../../styles';
 
 const SearchInput = props => {
-  const {onChangeText, text} = props;
+  const {onChangeText, text, counter} = props;
 
   return (
     <View style={{flexDirection: 'row'}}>
@@ -36,7 +36,7 @@ const SearchInput = props => {
         <View>
           <IconFontAwesome5 name={'shopping-basket'} size={24} />
           <View style={styles.basketCounterContainer}>
-            <Text style={styles.basketCounter}>7</Text>
+            <Text style={styles.basketCounter}>{counter}</Text>
           </View>
         </View>
       </TouchableOpacity>

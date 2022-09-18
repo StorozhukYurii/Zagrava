@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Button,
   Pressable,
@@ -13,15 +13,28 @@ import {colors} from '../../../../styles';
 import ListingItems from './ListingItems';
 import SingleItem from './SingleItem';
 
+const ItemList = ({DATA_ITEM, addToBasket}) => {
+  const [isSingleItem, setSingleItem] = useState(true);
 
-const ItemList = ({DATA_ITEM}) => {
-  const [isSingleItem, setSingleItem] = useState(false);
+  const [data, setData] = useState(DATA_ITEM);
 
-  const onToggle = () => {
+  const onToggleLike = id => {
+    setData(
+      data.map(item => {
+        if (item.id === id) {
+          return {...item, like: !item.like};
+        }
+        return item;
+      }),
+    );
+  };
+
+  const onToggleList = () => {
     setSingleItem(!isSingleItem);
   };
+
   const lengthOfListing = Object.keys(DATA_ITEM).length;
-  const columnWrapperStyle = {padding:5}
+  const columnWrapperStyle = {padding: 5};
 
   const ListHeader = () => {
     return (
@@ -29,7 +42,7 @@ const ItemList = ({DATA_ITEM}) => {
         <Text style={styles.listHeaderText}>
           {lengthOfListing} listings found
         </Text>
-        <Pressable onPress={() => onToggle()}>
+        <Pressable onPress={() => onToggleList()}>
           {/* {isSingleItem ? <Ionicons size={20} name={"layers-outline"}/> : <Ionicons size={20} name={"map-outline"}/>} */}
           <Ionicons
             size={25}
@@ -44,18 +57,31 @@ const ItemList = ({DATA_ITEM}) => {
     <View style={styles.container}>
       <View style={{flex: 1}}>
         <FlatList
-          data={DATA_ITEM}
-          // keyExtractor={item => item.id}
+          data={data}
+          keyExtractor={item => item.id}
           renderItem={({item}) =>
-            isSingleItem ? <SingleItem item={item} /> : <ListingItems item={item} />
+            isSingleItem ? (
+              <SingleItem
+                item={item}
+                addToBasket={addToBasket}
+                onToggleLike={onToggleLike}
+              />
+            ) : (
+              <ListingItems
+                item={item}
+                addToBasket={addToBasket}
+                onToggleLike={onToggleLike}
+              />
+            )
           }
           ListHeaderComponent={ListHeader}
           numColumns={!!isSingleItem ? 1 : 2}
           key={isSingleItem ? 1 : 2}
-          ItemSeparatorComponent={() => isSingleItem ? <Separator big/> : null}
-          columnWrapperStyle = {!isSingleItem ? columnWrapperStyle : null}
+          ItemSeparatorComponent={() =>
+            isSingleItem ? <Separator big /> : null
+          }
+          columnWrapperStyle={!isSingleItem ? columnWrapperStyle : null}
         />
-       
       </View>
     </View>
   );
@@ -71,7 +97,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     alignItems: 'center',
-    
   },
   listHeaderText: {
     fontSize: 20,

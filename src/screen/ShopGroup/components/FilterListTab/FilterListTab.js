@@ -4,16 +4,13 @@ import {width, height} from '../../../../styles/dimensions';
 import {colors} from '../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const FilterListTab = ({DATA_LIST_TAB}) => {
-  const [status, setStatus] = useState('All');
-  const setStatusFilter = status => {
-    setStatus(status);
-  };
+const FilterListTab = ({DATA_LIST_TAB, setStatusFilter, status}) => {
+ 
 
   const CategoryBlock = ({item}) => {
     return (
       <TouchableOpacity style={[styles.categoryBlock, status === item.status && styles.btnTabActive]} onPress={() => setStatusFilter(item.status)}>
-        <Text style={[styles.text, status === item.status && styles.textTabActive]}>{item.status}</Text>
+        <Text style={[styles.text, status === item.status && styles.textTabActive]}>{item.status[0]}</Text>
         <Ionicons size={15} name={'chevron-down-outline'} style={styles.icon} />
       </TouchableOpacity>
     );
