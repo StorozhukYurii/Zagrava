@@ -5612,6 +5612,11 @@ react-native-gradle-plugin@^0.0.7:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz#96602f909745239deab7b589443f14fce5da2056"
   integrity sha512-+4JpbIx42zGTONhBTIXSyfyHICHC29VTvhkkoUOJAh/XHPEixpuBduYgf6Y4y9wsN1ARlQhBBoptTvXvAFQf5g==
 
+react-native-multi-selectbox@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-multi-selectbox/-/react-native-multi-selectbox-1.5.0.tgz#a2bbb3ae9a76f10f6f0404ae9c9b0b573a051614"
+  integrity sha512-yRxV8PPD0TIRoXK4WduHcADzroB2UWGbJIlKEGkvz8sPPs80o8wdJDthuqbvO7U6rIP2ABb/TRaJAFAxFTi8jw==
+
 react-native-safe-area-context@^4.3.3:
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.3.3.tgz#a0f1e3116ded39efc1b78a46a6d89c71169827e4"
