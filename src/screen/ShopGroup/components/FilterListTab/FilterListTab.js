@@ -13,11 +13,11 @@ import CategoryBlock from './CategoryBlock';
 
 const FilterListTab = ({
   setStatusFilter,
-  status,
+  statusOfFilter,
   changeModalVisible,
   isModalVisible,
-  AddChose,
-  chosen,
+  AddNewFilterItem,
+  selectedNewFilterArray,
   statusFilterArray
 }) => {
 
@@ -26,16 +26,16 @@ const FilterListTab = ({
   return (
     <View style={styles.container}>
       <FlatList
-        data={!!chosen ? chosen : statusFilterArray}
+        data={!!selectedNewFilterArray ? selectedNewFilterArray : statusFilterArray}
         renderItem={({item}) => (
           <CategoryBlock
             item={item}
             isModalVisible={isModalVisible}
-            status={status}
+            statusOfFilter={statusOfFilter}
             setStatusFilter={setStatusFilter}
             changeModalVisible={changeModalVisible}
-            AddChose={AddChose}
-            chosen={chosen}
+            AddNewFilterItem={AddNewFilterItem}
+            selectedNewFilterArray={selectedNewFilterArray}
             statusFilterArray={statusFilterArray}
             // key={String(item)}
           />

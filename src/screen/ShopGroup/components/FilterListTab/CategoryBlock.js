@@ -10,32 +10,32 @@ const CategoryBlock = ({
   item,
   statusFilterArray,
   isModalVisible,
-  status,
+  statusOfFilter,
   setStatusFilter,
   changeModalVisible,
-  AddChose,
+  AddNewFilterItem,
 }) => {
   return (
     <View>
       <TouchableOpacity
-        style={[styles.categoryBlock, status === item && styles.btnTabActive]}
+        style={[styles.categoryBlock, statusOfFilter === item && styles.btnTabActive]}
         onPress={() => setStatusFilter(item)}>
-        <Text style={[styles.text, status === item && styles.textTabActive]}>
+        <Text style={[styles.text, statusOfFilter === item && styles.textTabActive]}>
           {/* {chosen === null && item} */}
           {item}
         </Text>
         <Ionicons size={15} name={'chevron-down-outline'} style={styles.icon} />
       </TouchableOpacity>
-      {status === 'All' ? (changeModalVisible(false)):<Modal
+      {statusOfFilter === 'All' ? (changeModalVisible(false)):<Modal
         animationType="fade"
         transparent={true}
         visible={isModalVisible}
         // onRequestClose={changeModalVisible(false)}
         >
         <ModalPicker
-          status={status}
+          statusOfFilter={statusOfFilter}
           statusFilterArray={statusFilterArray}
-          AddChose={AddChose}
+          AddNewFilterItem={AddNewFilterItem}
           changeModalVisible={changeModalVisible}
         />
       </Modal>}

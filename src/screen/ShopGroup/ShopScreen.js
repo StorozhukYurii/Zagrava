@@ -10,67 +10,88 @@ import Separator from '../../components/Separator';
 import ItemList from './components/ItemList/ItemList';
 
 export const ShopScreen = () => {
-  const statusFilterArray = ['All', 'Price', 'Type of product', 'Material', 'Rating']
-  const [status, setStatus] = useState('All');
-  const setStatusFilter = (status) => {
+  const statusFilterArray = [
+    'All',
+    'Price',
+    'Type of product',
+    'Material',
+    'Rating',
+  ];
+  const [statusOfFilter, setStatus] = useState('All');
+  const setStatusFilter = statusOfFilter => {
     // setModalVisible(!isModalVisible)
-    changeModalVisible(true)
-    setStatus(status);
-    console.log('статус коли натискаєш на кнопку  фільтрів',status)
+    changeModalVisible(true);
+    setStatus(statusOfFilter);
+    console.log('статус коли натискаєш на кнопку  фільтрів', statusOfFilter);
   };
+
+
 
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const [chosen, setChosen] = useState(null)
+  const changeModalVisible = bool => {
+    setModalVisible(bool);
+  };
 
-  const AddChose = useCallback((item, status) => {
-    console.log('масив фільтрів на початку перед всім ',statusFilterArray)
-    console.log('статус коли нажимаєш на один з підфільтрів ',status)
-    console.log('новий масив фільтрів, на початку нуль ',chosen)
-    console.log('підфільтр який приходить при натисканні ',item)
-    console.log('ще якийсь статус ', status)
+
+
+  const [selectedNewFilterArray, setSelectedFilterArray] = useState(null);
+
+  const AddNewFilterItem = useCallback((item, statusOfFilter) => {
+    // console.log('масив фільтрів на початку перед всім ', statusFilterArray);
+    // console.log('статус коли нажимаєш на один з підфільтрів ', statusOfFilter);
+    // console.log('новий масив фільтрів, на початку нуль ', selectedNewFilterArray);
+    // console.log('підфільтр який приходить при натисканні ', item);
+    // console.log('ще якийсь статус ', statusOfFilter);
     // const arr = statusArray.push(status)
     // return arr
-    
-    const newArr = Object.assign(!!chosen ? chosen : statusFilterArray)
-    const index = newArr.findIndex(el => el == status)
-    const removed = newArr.splice(index,1, item)
-    console.log('елемент який було видалено з масиву фільтрів ',removed)
+    const newArr = Object.assign(!!selectedNewFilterArray ? selectedNewFilterArray : statusFilterArray);
+    const index = newArr.findIndex(el => el == statusOfFilter);
+    const removed = newArr.splice(index, 1, item);
+    // console.log('елемент який було видалено з масиву фільтрів ', removed);
     // console.log(newArr.includes(status))
-    console.log('масив фільтрів після додання нового елемента і видалення старого ',statusFilterArray)
-    setChosen(newArr) 
-    setStatus(item)
-    changeModalVisible(false)
+    // console.log(
+    //   'масив фільтрів після додання нового елемента і видалення старого ',
+    //   statusFilterArray,
+    // );
+    setSelectedFilterArray(newArr);
+    setStatus(item);
+    changeModalVisible(false);
+    console.log('новий статус',statusOfFilter)
     // statusArray.push(item)
-    console.log('новий масив фільтрів ',chosen)
+    // console.log('новий масив фільтрів ', selectedNewFilterArray);
+  });
 
-  })
-
-  const changeModalVisible = (bool) => {
-   setModalVisible(bool);
-  };
+  
 
   const [text, onChangeText] = useState('');
 
-  const [dataList, setDataList] = useState(DATA_ITEM);
 
-  const [counter, setCounter] = useState(0);
+
+
+  const [counterBasket, setCounterBasket] = useState(0);
 
   const addToBasket = () => {
-    setCounter(counter + 1);
+    setCounterBasket(counterBasket + 1);
   };
+
+
 
   return (
     <Container>
-      <SearchInput onChangeText={onChangeText} text={text} counter={counter} />
+      <SearchInput
+        onChangeText={onChangeText}
+        text={text}
+        counterBasket={counterBasket}
+      />
       <FilterListTab
-        chosen={chosen}
-        status={status}
+        selectedNewFilterArray={selectedNewFilterArray}
+        statusOfFilter={statusOfFilter}
         setStatusFilter={setStatusFilter}
         isModalVisible={isModalVisible}
         changeModalVisible={changeModalVisible}
         Arry={Array}
-        AddChose={AddChose}
+        AddNewFilterItem={AddNewFilterItem}
         statusFilterArray={statusFilterArray}
       />
       <Separator small />

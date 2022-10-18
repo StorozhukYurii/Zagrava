@@ -10,14 +10,14 @@ import {
 } from 'react-native';
 import {colors, dimension} from '../../styles';
 
-const ModalPicker = ({changeModalVisible, status, AddChose}) => {
+const ModalPicker = ({changeModalVisible, statusOfFilter, AddNewFilterItem}) => {
   // const Array = ['All', 'Never', 'Second', 'Witcher']
 
   const ModalWindow = ({item}) => {
     return (
       <TouchableOpacity
         style={styles.itemContainer}
-        onPress={() => AddChose(item, status)}>
+        onPress={() => AddNewFilterItem(item, statusOfFilter)}>
         <Text style={styles.text}>{item}</Text>
         {/* <Button title="labal"  /> */}
       </TouchableOpacity>
@@ -43,26 +43,26 @@ const ModalPicker = ({changeModalVisible, status, AddChose}) => {
       onPress={() => changeModalVisible(true)}
       style={[styles.container]}>
       <View style={styles.modal}>
-        {arrayF.includes(status) && null}
-        {arrayS.includes(status) && (
+        {arrayF.includes(statusOfFilter) && null}
+        {arrayS.includes(statusOfFilter) && (
           <FlatList
             data={arrayS}
             renderItem={({item}) => <ModalWindow item={item} />}
           />
         )}
-        {arrayT.includes(status) && (
+        {arrayT.includes(statusOfFilter) && (
           <FlatList
             data={arrayT}
             renderItem={({item}) => <ModalWindow item={item} />}
           />
         )}
-        {arrayC.includes(status) && (
+        {arrayC.includes(statusOfFilter) && (
           <FlatList
             data={arrayC}
             renderItem={({item}) => <ModalWindow item={item} />}
           />
         )}
-        {arrayP.includes(status) && (
+        {arrayP.includes(statusOfFilter) && (
           <FlatList
             data={arrayP}
             renderItem={({item}) => <ModalWindow item={item} />}
