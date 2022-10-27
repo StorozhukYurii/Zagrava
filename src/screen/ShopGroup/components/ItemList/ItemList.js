@@ -12,35 +12,45 @@ import Separator from '../../../../components/Separator';
 import {colors} from '../../../../styles';
 import ListingItems from './ListingItems';
 import SingleItem from './SingleItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { onToggleLike } from '../../../../store/listingsSlice/listingsSlice';
 
-const ItemList = ({DATA_ITEM, addToBasket}) => {
+const ItemList = ({ addToBasket}) => {
+
+  const dispatch = useDispatch()
+
   const [isSingleItem, setSingleItem] = useState(true);
 
-  const [data, setData] = useState(DATA_ITEM);
+  
+  const listings = useSelector(state => state.listings.listings)
+  // const onToggleLike = useSelector(state => state.listings.listings)
 
-  const onToggleLike = id => {
-    setData(
-      data.map(item => {
-        if (item.id === id) {
-          return {...item, like: !item.like};
-        }
-        return item;
-      }),
-    );
-  };
+
+  // const onToggleLike = id => {
+  //   setData(
+  //     listings.map(item => {
+  //       if (item.id === id) {
+  //         return {...item, like: !item.like};
+  //       }
+  //       return item;
+  //     }),
+  //   );
+  // };
 
   const onToggleList = () => {
     setSingleItem(!isSingleItem);
   };
 
-  const lengthOfListing = Object.keys(DATA_ITEM).length;
+  const lengthOfListing = Object.keys(listings).length;
   const columnWrapperStyle = {padding: 5};
+
+  // const onToggleLike = id => dispatch(onToggleLike(id))
 
   const ListHeader = () => {
     return (
       <View style={styles.listHeader}>
         <Text style={styles.listHeaderText}>
-          {lengthOfListing} listings found
+          {lengthOfListing} listings found 
         </Text>
         <Pressable onPress={() => onToggleList()}>
           {/* {isSingleItem ? <Ionicons size={20} name={"layers-outline"}/> : <Ionicons size={20} name={"map-outline"}/>} */}
@@ -57,20 +67,20 @@ const ItemList = ({DATA_ITEM, addToBasket}) => {
     <View style={styles.container}>
       <View style={{flex: 1}}>
         <FlatList
-          data={data}
+          data={listings}
           keyExtractor={item => item.id}
           renderItem={({item}) =>
             isSingleItem ? (
               <SingleItem
                 item={item}
                 addToBasket={addToBasket}
-                onToggleLike={onToggleLike}
+                // onToggleLike={onToggleLike}
               />
             ) : (
               <ListingItems
                 item={item}
                 addToBasket={addToBasket}
-                onToggleLike={onToggleLike}
+                // onToggleLike={onToggleLike}
               />
             )
           }

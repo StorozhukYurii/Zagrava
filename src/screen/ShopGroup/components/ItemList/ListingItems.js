@@ -10,9 +10,14 @@ import {
 import {colors, dimension} from '../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Separator from '../../../../components/Separator';
+import { onToggleLike } from '../../../../store/listingsSlice/listingsSlice';
+import { useDispatch } from 'react-redux';
 
-const ListingItems = memo(({item, addToBasket,onToggleLike}) => {
+const ListingItems = memo(({item, addToBasket}) => {
 
+  const dispatch = useDispatch()
+  const {id} = item
+ 
 
   return (
     <View style={styles.mainContainer}>
@@ -39,7 +44,7 @@ const ListingItems = memo(({item, addToBasket,onToggleLike}) => {
         </View>
         <View style={styles.bottomContainer}>
           <View style={{flexDirection:'row', justifyContent:'space-between', width:dimension.width/5}}>
-            <TouchableOpacity onPress={()=> onToggleLike(item.id)}>
+            <TouchableOpacity onPress={() =>  dispatch(onToggleLike({id}))}>
               <Ionicons
                 name={item.like ? 'heart' :'heart-outline'}
                 size={22}

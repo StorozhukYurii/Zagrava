@@ -1,0 +1,33 @@
+{ 
+    "listings": [
+        {
+        "userId": 1,
+        "id": 1,
+        "img": "https://i.etsystatic.com/14672432/r/il/862065/4009157645/il_794xN.4009157645_2el2.jp",
+        "name": "Statuette of the goddess Santa Muerte",
+        "shortDescr": "Wooden figurine of Santa Muerte (Saint of Death) handmade, carved from oak",
+        "price": 320.00,
+        "size": 25,
+        "material": "Oak",
+        "history": "In the mythology of the Irish Celts, Morrigan was one of a whole group of Irish warrior goddesses. She can be perceived both as a separate deity and as a kind of trinity goddess. The goddess herself did not take part in the battles, but she was certainly present on the battlefield and used all her power to help one side or another.",
+        "rating": 4.5,
+        "type": "Wicca",
+        "like": false
+    },
+    {
+        "userId": 2,
+        "id": 2,
+        "img": "https://i.etsystatic.com/14672432/r/il/862065/4009157645/il_794xN.4009157645_2el2.jp",
+        "name": "Statuette of the goddess Santa Muerte",
+        "shortDescr": "Wooden figurine of Santa Muerte (Saint of Death) handmade, carved from oak",
+        "price": 320.00,
+        "size": 25,
+        "material": "Oak",
+        "history": "In the mythology of the Irish Celts, Morrigan was one of a whole group of Irish warrior goddesses. She can be perceived both as a separate deity and as a kind of trinity goddess. The goddess herself did not take part in the battles, but she was certainly present on the battlefield and used all her power to help one side or another.",
+        "rating": 4.5,
+        "type": "Wicca",
+        "like": false
+    }
+    ]
+}
+    

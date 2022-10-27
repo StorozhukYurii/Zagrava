@@ -10,8 +10,12 @@ import {
 } from 'react-native';
 import {colors, dimension} from '../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {onToggleLike} from '../../../../store/listingsSlice/listingsSlice';
+import {useDispatch} from 'react-redux';
 
-const SingleItem = memo(({item, addToBasket, onToggleLike,}) => {
+const SingleItem = memo(({item, addToBasket}) => {
+  const dispatch = useDispatch();
+  const {id} = item;
 
   return (
     <View style={{flex: 1}}>
@@ -29,22 +33,23 @@ const SingleItem = memo(({item, addToBasket, onToggleLike,}) => {
             />
           </TouchableOpacity>
         </View>
-        <Text>{`${item.shortDescr.substr(
-            0,
-            55,
-          )}${item.shortDescr.length > 55 ? '...' : ''}`}</Text>
+        <Text>{`${item.shortDescr.substr(0, 55)}${
+          item.shortDescr.length > 55 ? '...' : ''
+        }`}</Text>
       </View>
       <TouchableOpacity activeOpacity={0.9}>
         <ImageBackground source={{uri: item.img}} style={styles.image}>
           <View style={styles.itemRating}>
-          <Text style={{fontSize: 18, color:colors.white}}>{item.rating}</Text>
-          <Ionicons name={'star'} size={18} color={colors.gold} />
+            <Text style={{fontSize: 18, color: colors.white}}>
+              {item.rating}
+            </Text>
+            <Ionicons name={'star'} size={18} color={colors.gold} />
           </View>
         </ImageBackground>
       </TouchableOpacity>
       <View style={styles.bottomContainer}>
         <View style={styles.bottomSizeMaterial}>
-          <View style={{flexDirection: 'row', alignItems: 'center',}}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={{fontSize: 12}}>Size: {item.size} inch. </Text>
             <Text style={{fontSize: 12}}>Material: {item.material} wood</Text>
           </View>
@@ -52,8 +57,8 @@ const SingleItem = memo(({item, addToBasket, onToggleLike,}) => {
         </View>
         <View style={styles.bottomIconPriceContainer}>
           <View style={styles.bottomIconContainer}>
-            <TouchableOpacity onPress={() => onToggleLike(item.id)}>
-              <Ionicons 
+            <TouchableOpacity onPress={() => dispatch(onToggleLike({id}))}>
+              <Ionicons
                 name={item.like ? 'heart' : 'heart-outline'}
                 size={30}
                 color={item.like ? colors.main : colors.darkGrey}
@@ -97,8 +102,8 @@ const styles = StyleSheet.create({
     width: dimension.width,
     height: dimension.width,
     marginVertical: 5,
-    flexDirection:'row',
-    justifyContent:'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   bottomContainer: {
     paddingHorizontal: 10,
@@ -128,18 +133,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
   },
-  itemRating:{
-    flexDirection:'row',
-    padding:5,
-    alignItems:'center',
-    backgroundColor:colors.secondary,
-    height:40,
-    borderRadius:10,
-    margin:10,
-    width:dimension.width/6.5,
-    justifyContent:'space-around',
-    opacity:0.5
-  }
+  itemRating: {
+    flexDirection: 'row',
+    padding: 5,
+    alignItems: 'center',
+    backgroundColor: colors.secondary,
+    height: 40,
+    borderRadius: 10,
+    margin: 10,
+    width: dimension.width / 6.5,
+    justifyContent: 'space-around',
+    opacity: 0.5,
+  },
 });
 
 export default SingleItem;
