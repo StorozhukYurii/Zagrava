@@ -1,14 +1,17 @@
 import React from 'react';
-import {Text, View} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native'
+import {NavigationContainer} from '@react-navigation/native';
 import TabNavigator from './TabNavigator';
+import {store} from '../store';
+import {Provider} from 'react-redux';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <TabNavigator/>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
