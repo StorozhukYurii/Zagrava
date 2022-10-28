@@ -13,7 +13,6 @@ import {colors} from '../../../../styles';
 import ListingItems from './ListingItems';
 import SingleItem from './SingleItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { onToggleLike } from '../../../../store/listingsSlice/listingsSlice';
 
 const ItemList = ({ addToBasket}) => {
 
@@ -23,6 +22,7 @@ const ItemList = ({ addToBasket}) => {
 
   
   const listings = useSelector(state => state.listings.listings)
+  console.log(listings)
   // const onToggleLike = useSelector(state => state.listings.listings)
 
 
