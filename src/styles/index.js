@@ -1,4 +1,5 @@
 import colors from "./colors";
 import * as dimension from './dimensions'
+import fontSizes from "./fontSizes";
 
-export {colors, dimension}
+export {colors, dimension, fontSizes}

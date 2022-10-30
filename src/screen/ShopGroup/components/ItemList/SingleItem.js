@@ -45,6 +45,7 @@ const SingleItem = memo(({item, addToBasket}) => {
             </Text>
             <Ionicons name={'star'} size={18} color={colors.gold} />
           </View>
+          <View style={styles.itemRatingContainer}></View>
         </ImageBackground>
       </TouchableOpacity>
       <View style={styles.bottomContainer}>
@@ -131,20 +132,26 @@ const styles = StyleSheet.create({
     width: dimension.width / 3,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: dimension.borderRadius,
   },
   itemRating: {
     flexDirection: 'row',
-    padding: 5,
-    alignItems: 'center',
-    backgroundColor: colors.secondary,
-    height: 40,
-    borderRadius: 10,
-    margin: 10,
+    padding: dimension.xsmall,    
     width: dimension.width / 6.5,
     justifyContent: 'space-around',
-    opacity: 0.5,
+    position:'absolute',
+    right:10,
+    top:12,
+    alignItems:'center'
   },
+  itemRatingContainer:{
+    backgroundColor: colors.secondary,
+    height: 40,
+    borderRadius: dimension.borderRadius,
+    margin: dimension.width / 40,
+    width: dimension.width / 6.5,
+    opacity: 0.3,
+  }
 });
 
 export default SingleItem;

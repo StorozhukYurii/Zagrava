@@ -22,20 +22,6 @@ const ItemList = ({ addToBasket}) => {
 
   
   const listings = useSelector(state => state.listings.listings)
-  console.log(listings)
-  // const onToggleLike = useSelector(state => state.listings.listings)
-
-
-  // const onToggleLike = id => {
-  //   setData(
-  //     listings.map(item => {
-  //       if (item.id === id) {
-  //         return {...item, like: !item.like};
-  //       }
-  //       return item;
-  //     }),
-  //   );
-  // };
 
   const onToggleList = () => {
     setSingleItem(!isSingleItem);
