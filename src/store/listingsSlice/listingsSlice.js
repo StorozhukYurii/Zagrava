@@ -3,6 +3,9 @@ import { DATA_ITEM } from "../../data/data";
 
 const initialState = {
     listings: [...DATA_ITEM],
+
+    news: [],
+    
 }
 
 

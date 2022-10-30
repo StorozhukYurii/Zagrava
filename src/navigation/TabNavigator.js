@@ -22,7 +22,7 @@ const TabNavigator = () => {
 
 return(
     <Tab.Navigator
-        initialRouteName={screens.ProfileTab}
+        initialRouteName={screens.MainTab}
         screenOptions={({route}) => ({
             headerShown:false,
             tabBarShowLabel:false,
