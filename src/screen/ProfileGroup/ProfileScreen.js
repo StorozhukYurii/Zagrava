@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
   },
   personImage: {
     backgroundColor: colors.secondary,
-    height: 60,
-    width: 60,
+    height: 55,
+    width: 55,
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
