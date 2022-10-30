@@ -18,11 +18,11 @@ export const ShopScreen = () => {
     'Rating',
   ];
   const [statusOfFilter, setStatus] = useState('All');
-  const setStatusFilter = statusOfFilter => {
+  const setStatusFilter = status => {
     // setModalVisible(!isModalVisible)
     changeModalVisible(true);
-    setStatus(statusOfFilter);
-    console.log('статус коли натискаєш на кнопку  фільтрів', statusOfFilter);
+    setStatus(status);
+    console.log('статус коли натискаєш на кнопку  фільтрів', status);
   };
 
 

@@ -30,6 +30,7 @@ const ListingItems = memo(({item, addToBasket}) => {
             <Text style={{fontSize: 10, color: colors.white}}>{item.rating}</Text>
             <Ionicons name={'star'} size={10} color={colors.gold} />
           </View>
+          <View style={styles.itemRatingContainer}></View>
         </ImageBackground>
       </TouchableOpacity>
       <View style={styles.description}>
@@ -82,12 +83,8 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 5,
-    // width: dimension.width / 2,
-    // flexWrap:'wrap'
-    // backgroundColor: 'yellow',
   },
   image: {
-    // width: '100%',
     height: dimension.width / 2,
     borderRadius: 10,
     justifyContent: 'flex-end',
@@ -96,21 +93,26 @@ const styles = StyleSheet.create({
   description: {
     paddingHorizontal: 2,
     justifyContent: 'space-between',
-    // backgroundColor:'green',
     width:dimension.width/2.15,
     flex: 1,
   },
   itemRating: {
     flexDirection: 'row',
-    padding: 5,
-    alignItems: 'center',
+    width: dimension.width / 12,
+    justifyContent: 'space-around',
+    position:'absolute',
+    right:8,
+    top:10,
+    alignItems:'center'
+  },
+  itemRatingContainer:{
     backgroundColor: colors.secondary,
     height: 25,
-    borderRadius: 10,
-    margin: 10,
+    borderRadius: dimension.borderRadius,
+    top:dimension.xsmall,
+    right:dimension.xsmall,
     width: dimension.width / 10,
-    justifyContent: 'space-around',
-    opacity: 0.7,
+    opacity: 0.3,
   },
   bottomContainer: {
     flexDirection: 'row',
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     width: dimension.width / 5,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: dimension.borderRadius,
   },
 });
 export default ListingItems;
