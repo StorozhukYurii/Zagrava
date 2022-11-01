@@ -39,7 +39,7 @@ export const MainPageScreen = ({navigation}) => {
           <Text
             style={[
               styles.newsUrlText,
-              {fontSize: fontSizes.medium, color: colors.main},
+              {fontSize: fontSizes.medium, color: colors.main, textDecorationLine:"underline"},
             ]}>
             View all
           </Text>
