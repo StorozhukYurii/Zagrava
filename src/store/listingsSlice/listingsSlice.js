@@ -1,10 +1,11 @@
 import {createSlice } from "@reduxjs/toolkit";
 import { DATA_ITEM } from "../../data/data";
+import { NEWS_LIST } from "../../data/news";
 
 const initialState = {
     listings: [...DATA_ITEM],
 
-    news: [],
+    news: [...NEWS_LIST],
     
 }
 

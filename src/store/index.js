@@ -15,7 +15,9 @@ import {
 
 const persistConfig = {
   key: 'root',
-  whitelist:['listings'],
+  whitelist:[
+    // 'listings'
+  ],
   storage: AsyncStorage,
 };
 

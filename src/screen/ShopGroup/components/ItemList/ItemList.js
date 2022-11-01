@@ -30,7 +30,6 @@ const ItemList = ({ addToBasket}) => {
   const lengthOfListing = Object.keys(listings).length;
   const columnWrapperStyle = {padding: 5};
 
-  // const onToggleLike = id => dispatch(onToggleLike(id))
 
   const ListHeader = () => {
     return (
@@ -39,7 +38,6 @@ const ItemList = ({ addToBasket}) => {
           {lengthOfListing} listings found 
         </Text>
         <Pressable onPress={() => onToggleList()}>
-          {/* {isSingleItem ? <Ionicons size={20} name={"layers-outline"}/> : <Ionicons size={20} name={"map-outline"}/>} */}
           <Ionicons
             size={25}
             name={isSingleItem ? 'layers-outline' : 'map-outline'}
@@ -60,13 +58,11 @@ const ItemList = ({ addToBasket}) => {
               <SingleItem
                 item={item}
                 addToBasket={addToBasket}
-                // onToggleLike={onToggleLike}
               />
             ) : (
               <ListingItems
                 item={item}
                 addToBasket={addToBasket}
-                // onToggleLike={onToggleLike}
               />
             )
           }

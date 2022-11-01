@@ -95,7 +95,7 @@ export const ShopScreen = () => {
         statusFilterArray={statusFilterArray}
       />
       <Separator small />
-      <ItemList DATA_ITEM={DATA_ITEM} addToBasket={addToBasket} />
+      <ItemList addToBasket={addToBasket} />
     </Container>
   );
 };
