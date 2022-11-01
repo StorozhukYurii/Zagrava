@@ -2,16 +2,14 @@ import React from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Container from '../../components/Container';
 import HeaderLogo from '../../components/HeaderLogo';
-import Separator from '../../components/Separator';
 import {colors, dimension, fontSizes} from '../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import AttachmentInProfileScreen from '../../components/AttachmentInProfileScreen/AttachmentInProfileScreen';
+import AttachmentInProfileScreen from '../../components/AttachmentInProfileScreen';
 
 export const ProfileScreen = () => {
   return (
     <Container>
       <HeaderLogo />
-      <Separator big />
       <TouchableOpacity activeOpacity={0.7} style={styles.personInfoContainer}>
         <View style={styles.personImage}>
           <Text style={styles.personLetterInImage}>Y</Text>
@@ -33,13 +31,13 @@ export const ProfileScreen = () => {
       
       <AttachmentInProfileScreen text={'All news'}  icon={'newspaper'}/>
 
-      <AttachmentInProfileScreen text={'My reserve'}  icon={'basket'}/>
+      <AttachmentInProfileScreen text={'My reserve'}  icon={'cart'}/>
       
       <AttachmentInProfileScreen text={'Favorites'}  icon={'heart'}/>
 
       <View style={{height:30}}></View>
 
-      <AttachmentInProfileScreen text={'Configuration'}  icon={'options'}/>
+      <AttachmentInProfileScreen text={'Configuration'}  icon={'settings-sharp'}/>
 
       <AttachmentInProfileScreen text={'Terms of service'}  icon={'reader'}/>
 
