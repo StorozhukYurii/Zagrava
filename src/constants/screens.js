@@ -11,5 +11,7 @@ export default {
     ChatTab:'ChatTab',
     ShopTab:'ShopTab',
     PurchaseHistoryTab:'PurchaseHistoryTab',
-    ProfileTab:'ProfileTab'
+    ProfileTab:'ProfileTab',
+
+    TabNavigator: 'TabNavigator',
 }
