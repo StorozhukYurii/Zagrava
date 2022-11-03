@@ -10,11 +10,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import Container from '../../components/Container';
-import HeaderLogo from '../../components/HeaderLogo';
-import {colors, dimension, fontSizes} from '../../styles';
-import NewsList from './components/NewsList';
-import Rank from './components/Rank';
+import Container from '../../../components/Container';
+import HeaderLogo from '../../../components/HeaderLogo';
+import {colors, dimension, fontSizes} from '../../../styles';
+import NewsList from '../components/NewsList';
+import Rank from '../components/Rank';
 
 export const MainPageScreen = ({navigation}) => {
   return (

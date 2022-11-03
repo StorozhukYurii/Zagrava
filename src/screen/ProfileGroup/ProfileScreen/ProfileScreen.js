@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import Container from '../../components/Container';
-import HeaderLogo from '../../components/HeaderLogo';
-import {colors, dimension, fontSizes} from '../../styles';
+import Container from '../../../components/Container';
+import HeaderLogo from '../../../components/HeaderLogo';
+import {colors, dimension, fontSizes} from '../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import AttachmentInProfileScreen from '../../components/AttachmentInProfileScreen';
+import AttachmentInProfileScreen from '../../../components/AttachmentInProfileScreen';
 
 export const ProfileScreen = () => {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 
 import screens from '../../constants/screens';
-import {ProfileScreen} from '../../screen/ProfileGroup/ProfileScreen';
+import {ProfileScreen} from '../../screen/ProfileGroup/ProfileScreen/ProfileScreen';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 

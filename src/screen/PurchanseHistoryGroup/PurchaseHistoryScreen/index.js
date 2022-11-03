@@ -1,10 +1,10 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import Container from '../../components/Container';
-import HeaderLogo from '../../components/HeaderLogo';
+import Container from '../../../components/Container';
+import HeaderLogo from '../../../components/HeaderLogo';
 import { useDispatch, useSelector } from 'react-redux';
-import { colors, fontSizes } from '../../styles';
-import PurchaseItem from './components/PurchaseItem';
+import { colors, fontSizes } from '../../../styles';
+import PurchaseItem from '../components/PurchaseItem';
 
 export const PurchaseHistoryScreen = () => {
 
