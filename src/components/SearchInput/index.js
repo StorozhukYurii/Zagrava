@@ -12,9 +12,17 @@ import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../../styles';
+import { useNavigation } from '@react-navigation/native';
+import screens from '../../constants/screens';
 
 const SearchInput = props => {
   const {onChangeText, text, counterBasket} = props;
+
+  const navigation = useNavigation()
+
+ const onOpenOrderList = () => {
+    navigation.navigate(screens.OrderList)
+  }
 
   return (
     <View style={{flexDirection: 'row'}}>
@@ -32,7 +40,7 @@ const SearchInput = props => {
           <Icon name={'backspace-outline'} size={24} />
         </Pressable>
       </View>
-      <TouchableOpacity style={styles.basketIcon}>
+      <TouchableOpacity style={styles.basketIcon} onPress={onOpenOrderList}>
         <View>
           <IconFontAwesome5 name={'shopping-basket'} size={24} />
           <View style={styles.basketCounterContainer}>

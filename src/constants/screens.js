@@ -1,5 +1,17 @@
 export default {
 
+    News:'News',
+    NewsItem:'NewsItem',
+    OrderList:'OrderList',
+    Product:'Product',
+    ProfileInfo:'ProfileInfo',
+    CitySetting:'CitySetting',
+    Favorite:'Favorite',
+    Configuration:'Configuration',
+    TermsOfService:'TermsOfService',
+    Language:'Language',
+    Purchase:'Purchase',
+
     Selling:'Selling',
     Profile:'Profile',
     PurchaseHistory:'PurchaseHistory',
