@@ -3,10 +3,10 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import {colors, dimension, fontSizes} from '../../styles';
 import Separator from '../Separator';
 
-const HeaderLogo = () => {
+const HeaderLogo = ({reverse}) => {
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, reverse && styles.containerReverse]}>
         <Image
           style={styles.logo}
           source={require('../../assets/gallery/ic_launcher_round.png')}
@@ -23,11 +23,17 @@ const styles = StyleSheet.create({
     height: dimension.xbig,
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: dimension.small,
+    // marginVertical: dimension.small,
+    // left:-30
+  },
+  containerReverse:{
+    height: dimension.xbig,
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
   },
   logo: {
-    height: 45,
-    width: 45,
+    height: 40,
+    width: 40,
     marginLeft: 10,
   },
   text: {
