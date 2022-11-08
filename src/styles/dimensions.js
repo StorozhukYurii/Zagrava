@@ -10,3 +10,4 @@ export const big = 32;
 export const xbig = 54;
 
 export const borderRadius = 10
+export const borderRadiusUserImage = 30

@@ -17,7 +17,7 @@ const NewsList = ({item}) => {
   const navigation = useNavigation()
 
   const onOpenNewsItem = () => {
-    navigation.navigate(screens.NewsItem, {id:item.id, item:item})
+    navigation.navigate(screens.NewsItem, {item:item})
   }
 
   return (

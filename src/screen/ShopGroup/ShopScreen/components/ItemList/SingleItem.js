@@ -8,14 +8,22 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {colors, dimension} from '../../../../../styles';
+import {colors, dimension, fontSizes} from '../../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {onToggleLike} from '../../../../../store/listingsSlice/listingsSlice';
 import {useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import screens from '../../../../../constants/screens';
 
-const SingleItem = memo(({item, addToBasket,onOpenProduct}) => {
+const SingleItem = memo(({item, addToBasket}) => {
   const dispatch = useDispatch();
   const {id} = item;
+
+  const navigation = useNavigation();
+
+  const onOpenProduct = () => {
+    navigation.navigate(screens.Product, {item, id: item.id});
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -81,7 +89,12 @@ const SingleItem = memo(({item, addToBasket,onOpenProduct}) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={addToBasket} style={styles.priceContainer}>
-            <Text>{item.price} $</Text>
+            <Ionicons
+              name={'add-circle-outline'}
+              size={24}
+              color={colors.main}
+            />
+            <Text style={styles.priceText}>{item.price} $</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -130,28 +143,34 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     padding: 5,
     width: dimension.width / 3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent:'space-evenly',
+    // alignItems: 'center',
     borderRadius: dimension.borderRadius,
+    flexDirection:'row',
+  },
+  priceText:{
+    color:colors.main,
+    fontWeight:'500',
+    fontSize:fontSizes.large
   },
   itemRating: {
     flexDirection: 'row',
-    padding: dimension.xsmall,    
+    padding: dimension.xsmall,
     width: dimension.width / 6.5,
     justifyContent: 'space-around',
-    position:'absolute',
-    right:10,
-    top:12,
-    alignItems:'center'
+    position: 'absolute',
+    right: 10,
+    top: 12,
+    alignItems: 'center',
   },
-  itemRatingContainer:{
+  itemRatingContainer: {
     backgroundColor: colors.secondary,
     height: 40,
     borderRadius: dimension.borderRadius,
     margin: dimension.width / 40,
     width: dimension.width / 6.5,
     opacity: 0.3,
-  }
+  },
 });
 
 export default SingleItem;
