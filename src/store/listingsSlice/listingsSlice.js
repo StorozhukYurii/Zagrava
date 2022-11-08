@@ -14,10 +14,10 @@ export const listingsSlice = createSlice({
     name:'listings',
     initialState,
     reducers:{
-        onToggleLike(state,action){
+        onToggleLike:(state, action) => {
             state.listings.map(item => {
                 if(item.id === action.payload.id){
-                    item.like = !item.like
+                   return  item.like = !item.like
                 }
             })
         }

@@ -2,6 +2,7 @@ import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import listings from './listingsSlice/listingsSlice';
 import cart from './cartSlice/cartSlice'
 import purchase from './purchaseSlice/purchaseSlice'
+import user from './userSlice/userSlice'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   persistStore,
@@ -22,7 +23,7 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const rootReducer = combineReducers({listings, cart, purchase});
+const rootReducer = combineReducers({listings, cart, purchase, user});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -32,11 +32,11 @@ const ItemList = ({ addToBasket}) => {
   const lengthOfListing = Object.keys(listings).length;
   const columnWrapperStyle = {padding: 5};
 
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
 
-  const onOpenProduct = () => {
-    navigation.navigate(screens.Product)
-  }
+  // const onOpenProduct = (item) => {
+  //   navigation.navigate(screens.Product, {item})
+  // }
 
 
   const ListHeader = () => {
@@ -66,13 +66,13 @@ const ItemList = ({ addToBasket}) => {
               <SingleItem
                 item={item}
                 addToBasket={addToBasket}
-                onOpenProduct={onOpenProduct}
+                // onOpenProduct={onOpenProduct}
               />
             ) : (
               <ListingItems
                 item={item}
                 addToBasket={addToBasket}
-                onOpenProduct={onOpenProduct}
+                // onOpenProduct={onOpenProduct}
               />
             )
           }

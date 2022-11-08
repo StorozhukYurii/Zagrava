@@ -7,8 +7,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AttachmentInProfileScreen from '../../../components/AttachmentInProfileScreen';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../constants/screens';
+import { useSelector } from 'react-redux';
 
 export const ProfileScreen = () => {
+
+  const name = useSelector(state => state.user.name)
+  const city = useSelector(state => state.user.city[0])
+  const phone_number = useSelector(state => state.user.phone_number)
 
   const navigation = useNavigation()
 
@@ -49,12 +54,12 @@ export const ProfileScreen = () => {
       <HeaderLogo />
       <TouchableOpacity activeOpacity={0.7} style={styles.personInfoContainer} onPress={onOpenUserInfo}>
         <View style={styles.personImage}>
-          <Text style={styles.personLetterInImage}>Y</Text>
+          <Text style={styles.personLetterInImage}>{name.substr(0,1)}</Text>
         </View>
         <View style={styles.personPersonalDataContainer}>
           <View style={styles.personPersonalData}>
-            <Text style={[styles.personalDataText, {fontSize:fontSizes.large}]}>Yurii</Text>
-            <Text style={[styles.personalDataText, {fontSize:fontSizes.small}]}>+30(066)121-21-21</Text>
+            <Text style={[styles.personalDataText, {fontSize:fontSizes.large}]}>{name}</Text>
+            <Text style={[styles.personalDataText, {fontSize:fontSizes.small}]}>{phone_number}</Text>
           </View>
           <View>
             <Ionicons name={'chevron-forward-outline'} size={20} color={colors.darkGrey} />
@@ -62,7 +67,7 @@ export const ProfileScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <AttachmentInProfileScreen text={'City'} city={'Ternopil'} icon={'location-sharp'} onPress={onOpenCitySetting}/>
+      <AttachmentInProfileScreen text={'City'} city={city} icon={'location-sharp'} onPress={onOpenCitySetting}/>
 
       <View style={{height:30}}></View>
       
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     height: 55,
     width: 55,
-    borderRadius: 30,
+    borderRadius: dimension.borderRadiusUserImage,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -12,11 +12,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Separator from '../../../../../components/Separator';
 import { onToggleLike } from '../../../../../store/listingsSlice/listingsSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import screens from '../../../../../constants/screens';
 
-const ListingItems = memo(({item, addToBasket, onOpenProduct}) => {
+const ListingItems = memo(({item, addToBasket}) => {
 
   const dispatch = useDispatch()
   const {id} = item
+
+  const navigation = useNavigation()
+
+  const onOpenProduct = () => {
+    navigation.navigate(screens.Product, {item, id:item.id})
+  }
 
   return (
     <View style={styles.mainContainer}>
@@ -68,7 +76,7 @@ const ListingItems = memo(({item, addToBasket, onOpenProduct}) => {
           </View>
 
           <TouchableOpacity onPress={addToBasket} style={styles.priceContainer}>
-            <Text style={{color: colors.white}}>{item.price}$</Text>
+            <Text style={{color: colors.main}}>{item.price}$</Text>
           </TouchableOpacity>
         </View>
          <Separator small />
