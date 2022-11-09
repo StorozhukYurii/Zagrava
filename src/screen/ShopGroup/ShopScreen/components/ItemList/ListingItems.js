@@ -14,8 +14,9 @@ import { onToggleLike } from '../../../../../store/listingsSlice/listingsSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
+import { onAddToCart } from '../../../../../store/cartSlice/cartSlice';
 
-const ListingItems = memo(({item, addToBasket}) => {
+const ListingItems = memo(({item}) => {
 
   const dispatch = useDispatch()
   const {id} = item
@@ -30,7 +31,7 @@ const ListingItems = memo(({item, addToBasket}) => {
     <View style={styles.mainContainer}>
       <TouchableOpacity activeOpacity={0.9} style={{width:dimension.width/2.15}} onPress={onOpenProduct}>
         <ImageBackground
-          source={{uri: item.img}}
+          source={{uri: item.img[0]}}
           style={styles.image}
           imageStyle={{borderRadius: 10}}>
           <View style={styles.itemRating}>
@@ -75,7 +76,7 @@ const ListingItems = memo(({item, addToBasket}) => {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity onPress={addToBasket} style={styles.priceContainer}>
+          <TouchableOpacity onPress={() => dispatch(onAddToCart(item))} style={styles.priceContainer}>
             <Text style={{color: colors.main}}>{item.price}$</Text>
           </TouchableOpacity>
         </View>

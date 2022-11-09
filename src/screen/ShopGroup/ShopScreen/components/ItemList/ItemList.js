@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
 
-const ItemList = ({ addToBasket}) => {
+const ItemList = ({ }) => {
 
   const dispatch = useDispatch()
 
@@ -65,14 +65,10 @@ const ItemList = ({ addToBasket}) => {
             isSingleItem ? (
               <SingleItem
                 item={item}
-                addToBasket={addToBasket}
-                // onOpenProduct={onOpenProduct}
               />
             ) : (
               <ListingItems
                 item={item}
-                addToBasket={addToBasket}
-                // onOpenProduct={onOpenProduct}
               />
             )
           }

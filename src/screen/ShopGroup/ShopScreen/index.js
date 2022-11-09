@@ -66,23 +66,11 @@ export const ShopScreen = () => {
 
   const [text, onChangeText] = useState('');
 
-
-
-
-  const [counterBasket, setCounterBasket] = useState(0);
-
-  const addToBasket = () => {
-    setCounterBasket(counterBasket + 1);
-  };
-
-
-
   return (
     <Container>
       <SearchInput
         onChangeText={onChangeText}
         text={text}
-        counterBasket={counterBasket}
       />
       <FilterListTab
         selectedNewFilterArray={selectedNewFilterArray}
@@ -95,7 +83,7 @@ export const ShopScreen = () => {
         statusFilterArray={statusFilterArray}
       />
       <Separator small />
-      <ItemList addToBasket={addToBasket} />
+      <ItemList />
     </Container>
   );
 };

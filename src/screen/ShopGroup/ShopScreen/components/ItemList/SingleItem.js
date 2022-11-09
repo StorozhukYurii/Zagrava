@@ -11,14 +11,16 @@ import {
 import {colors, dimension, fontSizes} from '../../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {onToggleLike} from '../../../../../store/listingsSlice/listingsSlice';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
+import { onAddToCart } from '../../../../../store/cartSlice/cartSlice';
 
-const SingleItem = memo(({item, addToBasket}) => {
+const SingleItem = memo(({item}) => {
   const dispatch = useDispatch();
   const {id} = item;
 
+  // const cart = useSelector(state => state.cart.cart)
   const navigation = useNavigation();
 
   const onOpenProduct = () => {
@@ -88,7 +90,7 @@ const SingleItem = memo(({item, addToBasket}) => {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={addToBasket} style={styles.priceContainer}>
+          <TouchableOpacity onPress={() => dispatch(onAddToCart(item))} style={styles.priceContainer}>
             <Ionicons
               name={'add-circle-outline'}
               size={24}
