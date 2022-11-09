@@ -46,7 +46,7 @@ const SingleItem = memo(({item, addToBasket}) => {
         }`}</Text>
       </View>
       <TouchableOpacity activeOpacity={0.9} onPress={onOpenProduct}>
-        <ImageBackground source={{uri: item.img}} style={styles.image}>
+        <ImageBackground source={{uri: item.img[0]}} style={styles.image}>
           <View style={styles.itemRating}>
             <Text style={{fontSize: 18, color: colors.white}}>
               {item.rating}
@@ -97,6 +97,7 @@ const SingleItem = memo(({item, addToBasket}) => {
             <Text style={styles.priceText}>{item.price} $</Text>
           </TouchableOpacity>
         </View>
+        <Text>{item.likesCount} likes</Text>
       </View>
       {/* <Separator big /> */}
     </View>
