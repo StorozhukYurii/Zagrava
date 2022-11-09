@@ -14,9 +14,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../../styles';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../constants/screens';
+import { useSelector } from 'react-redux';
 
 const SearchInput = props => {
-  const {onChangeText, text, counterBasket} = props;
+  const {onChangeText, text} = props;
+  const cart = useSelector(state => state.cart.cart)
 
   const navigation = useNavigation()
 
@@ -44,7 +46,7 @@ const SearchInput = props => {
         <View>
           <IconFontAwesome5 name={'shopping-basket'} size={24} />
           <View style={styles.basketCounterContainer}>
-            <Text style={styles.basketCounter}>{counterBasket}</Text>
+            <Text style={styles.basketCounter}>{cart.length}</Text>
           </View>
         </View>
       </TouchableOpacity>
