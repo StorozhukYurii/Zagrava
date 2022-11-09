@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Image,
 } from 'react-native';
 import HeaderLogo from '../../../components/HeaderLogo';
 import {dimension, colors, fontSizes} from '../../../styles';
@@ -15,19 +16,30 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Separator from '../../../components/Separator';
 import {useDispatch, useSelector} from 'react-redux';
 import {onToggleLike} from '../../../store/listingsSlice/listingsSlice';
+import {useEffect} from 'react';
+import { styles } from './style';
 
 const ProductScreen = ({route}) => {
   const navigation = useNavigation();
   const {item, id} = route.params;
+  const {img} = item;
+
   const dispatch = useDispatch();
   const userName = useSelector(state => state.user.name);
 
   const [like, setLike] = useState(item.like);
+  const [countLike, setCountLike] = useState(0);
 
   const toggleLike = () => {
     dispatch(onToggleLike({id}));
     setLike(!like);
+    const amount = like ? -1 : 1;
+    setCountLike(Number(countLike) + amount);
   };
+
+  useEffect(() => {
+    setCountLike(item.likesCount);
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -36,15 +48,54 @@ const ProductScreen = ({route}) => {
     });
   });
 
+  const [imageActive, setImage] = useState(0);
+
+  const onchange = e => {
+    if (e) {
+      const slide = Math.ceil(
+        e.contentOffset.x / e.layoutMeasurement.width,
+      );
+      if (slide != imageActive) {
+        setImage(slide);
+      }
+    }
+  };
   return (
     <ScrollView>
-      <ImageBackground source={{uri: item.img}} style={styles.image}>
-        <View style={styles.itemRating}>
-          <Text style={{fontSize: 18, color: colors.white}}>{item.rating}</Text>
-          <Ionicons name={'star'} size={18} color={colors.gold} />
+      <View>
+        <View style={{position: 'absolute', zIndex: 1, right: 0}}>
+          <View style={styles.itemRating}>
+            <Text style={{fontSize: 18, color: colors.white}}>
+              {item.rating}
+            </Text>
+            <Ionicons name={'star'} size={18} color={colors.gold} />
+          </View>
+          <View style={styles.itemRatingContainer}></View>
         </View>
-        <View style={styles.itemRatingContainer}></View>
-      </ImageBackground>
+        <ScrollView
+          onScroll={({nativeEvent}) => onchange(nativeEvent)}
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          horizontal>
+          {img.map((e, index) => (
+            <ImageBackground
+              source={{uri: e}}
+              style={styles.image}
+              key={e}></ImageBackground>
+          ))}
+        </ScrollView>
+        <View style={styles.dotContainer}>
+          {img.length > 1 &&
+            img.map((e, index) => (
+              <Text
+                key={e}
+                style={imageActive == index ? styles.dotActive : styles.dot}>
+                •
+              </Text>
+            ))}
+        </View>
+      </View>
+
       <View style={styles.infoContainer}>
         <View style={styles.bottomIconPriceContainer}>
           <View style={styles.bottomIconContainer}>
@@ -79,7 +130,7 @@ const ProductScreen = ({route}) => {
             <Text style={styles.priceText}>{item.price} $</Text>
           </TouchableOpacity>
         </View>
-        <Text>{item.likesCount} likes</Text>
+        <Text>{countLike} likes</Text>
         <Text style={styles.title}>{item.name}</Text>
 
         <Text>{item.shortDescr}</Text>
@@ -94,103 +145,22 @@ const ProductScreen = ({route}) => {
           <View style={styles.userImage}>
             <Text style={styles.userImageLetter}>{userName.substr(0, 1)}</Text>
           </View>
-          <TextInput style={styles.reviewInput} placeholder="Write your review..." />
+          <TextInput
+            style={styles.reviewInput}
+            placeholder="Write your review..."
+          />
         </View>
 
         <Separator big />
 
-        <Text style={{marginVertical:dimension.small}}>{'  ' + item.history}</Text>
+        <Text style={{marginVertical: dimension.small}}>
+          {'  ' + item.history}
+        </Text>
       </View>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: fontSizes.headline,
-    paddingVertical: dimension.small,
-    fontWeight: '700',
-    color: colors.main,
-    letterSpacing: 0.5,
-  },
-  infoContainer: {
-    paddingHorizontal: 10,
-  },
-  image: {
-    width: dimension.width,
-    height: dimension.width,
-    marginBottom: dimension.xsmall,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  bottomIconPriceContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: dimension.xsmall,
-  },
-  bottomIconContainer: {
-    flexDirection: 'row',
-    width: dimension.width / 3.5,
-    justifyContent: 'space-between',
-  },
-  priceContainer: {
-    backgroundColor: colors.secondary,
-    padding: 5,
-    width: dimension.width / 3,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    borderRadius: dimension.borderRadius,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  priceText: {
-    color: colors.main,
-    fontWeight: '500',
-    fontSize: fontSizes.large,
-  },
-  itemRating: {
-    flexDirection: 'row',
-    padding: dimension.xsmall,
-    width: dimension.width / 6.5,
-    justifyContent: 'space-evenly',
-    position: 'absolute',
-    right: 10,
-    top: 12,
-    alignItems: 'center',
-  },
-  itemRatingContainer: {
-    backgroundColor: colors.secondary,
-    height: 40,
-    borderRadius: dimension.borderRadius,
-    margin: dimension.width / 40,
-    width: dimension.width / 6.5,
-    opacity: 0.3,
-  },
-  userImage: {
-    height: 36,
-    width: 36,
-    backgroundColor: colors.secondary,
-    borderRadius: dimension.borderRadiusUserImage,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  userImageLetter: {
-    fontWeight: '700',
-    color: colors.main,
-    fontSize: fontSizes.large,
-  },
-  reviewContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 5,
-  },
-  reviewInput:{
-    // borderWidth:1,
-    height:40,
-    flex:1,
-    marginLeft:dimension.small
-  }
-});
+
 
 export default ProductScreen;

@@ -17,7 +17,12 @@ export const listingsSlice = createSlice({
         onToggleLike:(state, action) => {
             state.listings.map(item => {
                 if(item.id === action.payload.id){
-                   return  item.like = !item.like
+                    if(item.like === false){
+                        item.likesCount = (Number(item.likesCount) + 1)
+                      } else {
+                        item.likesCount = (Number(item.likesCount) - 1)
+                      }
+                     item.like = !item.like
                 }
             })
         }
