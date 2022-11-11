@@ -14,7 +14,6 @@ import { onAddAmountItem, onToggleLike } from '../../../../../store/listingsSlic
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
-import { onAddToCart } from '../../../../../store/cartSlice/cartSlice';
 
 const ListingItems = memo(({item}) => {
 

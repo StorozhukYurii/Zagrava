@@ -36,12 +36,12 @@ const OrderComponent = ({item}) => {
           <TouchableOpacity onPress={() => dispatch(onAddAmountItem(item))}>
             <AntDesign name={'pluscircleo'} size={18} />
           </TouchableOpacity>
-          
         </View>
       </View>
 
       <View style={styles.priceContainer}>
-        <Text style={styles.text}>{item.price} $</Text>
+        <Text style={styles.text}>{item.price}$ /1</Text>
+        <Text style={[styles.text, {color:colors.main, marginTop:dimension.small}]}>{item.price * item.amount}$ tot</Text>
       </View>
     </View>
   );
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     width: dimension.width * 0.45,
   },
   priceContainer: {
-    width: dimension.width * 0.18,
+    width: dimension.width * 0.2,
   },
   quantityConteiner: {
     flexDirection: 'row',

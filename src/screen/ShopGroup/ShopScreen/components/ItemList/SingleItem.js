@@ -25,10 +25,8 @@ const SingleItem = memo(({item}) => {
   const dispatch = useDispatch();
   const {id} = item;
 
-  // const cart = useSelector(state => state.cart.cart)
   const navigation = useNavigation();
   const onAddItemToBasket = () => {
-    // dispatch(onAddToCart(item))
     dispatch(onAddAmountItem(item));
   };
 
@@ -170,7 +168,6 @@ const styles = StyleSheet.create({
   priceContainer: {
     backgroundColor: colors.secondary,
     padding: 5,
-    // width: dimension.width / 3,
     justifyContent: 'space-evenly',
     borderRadius: dimension.borderRadius,
     flexDirection: 'row',

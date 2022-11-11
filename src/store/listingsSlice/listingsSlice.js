@@ -41,12 +41,17 @@ export const listingsSlice = createSlice({
                 }
             })
         },
+        onClearBasket:(state,actions) => {
+            state.listings.map(item => {
+                item.amount = 0
+            })
+        },
         
     },
 })
 
 const {actions, reducer} = listingsSlice
 
-export const {onToggleLike, onAddAmountItem, onDecAmountItem} = actions
+export const {onToggleLike, onAddAmountItem, onDecAmountItem, onClearBasket} = actions
 
 export default reducer

@@ -19,6 +19,9 @@ import { useSelector } from 'react-redux';
 const SearchInput = props => {
   const {onChangeText, text} = props;
   const cart = useSelector(state => state.cart.cart)
+  const listings = useSelector(state => state.listings.listings)
+
+  let itemInBasketSum = listings.reduce((sum, item) => sum + item.amount, 0)
 
   const navigation = useNavigation()
 
@@ -46,7 +49,7 @@ const SearchInput = props => {
         <View>
           <IconFontAwesome5 name={'shopping-basket'} size={24} />
           <View style={styles.basketCounterContainer}>
-            <Text style={styles.basketCounter}>{cart.length}</Text>
+            <Text style={styles.basketCounter}>{itemInBasketSum}</Text>
           </View>
         </View>
       </TouchableOpacity>
