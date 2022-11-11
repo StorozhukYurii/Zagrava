@@ -4,31 +4,39 @@ import {colors, dimension, fontSizes} from '../../../styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import screens from '../../../constants/screens';
+import {useDispatch, useSelector} from 'react-redux';
+import { onAddAmountItem, onDecAmountItem } from '../../../store/listingsSlice/listingsSlice';
 
 const OrderComponent = ({item}) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch()
 
-  const onOpenProductScreen = () => {
-    navigation.navigate(screens.Product, {item, id: item.id});
-  }
   const [counter, setCounter] = useState(1);
+
+ 
+
+//  useEffect(() => {
+//   qqq(item.id)
+//  },[])
+  
 
   return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={onOpenProductScreen}>
-            <Image source={{uri: item.img[0]}} style={styles.image} />
-        </TouchableOpacity>
-      
+      <Image source={{uri: item.img[0]}} style={styles.image} />
 
       <View style={styles.nameContainer}>
         <Text style={styles.text}>{`${item.name.substr(0, 40)}${
           item.name.length > 40 ? '...' : ''
         }`}</Text>
         <View style={styles.quantityConteiner}>
-          <AntDesign name={'minuscircleo'} size={18} />
-          <Text style={styles.text}>{counter}</Text>
-          <AntDesign name={'pluscircleo'} size={18} />
+          <TouchableOpacity onPress={() => dispatch(onDecAmountItem(item))}>
+            <AntDesign name={'minuscircleo'} size={18} />
+          </TouchableOpacity>
+          <Text style={styles.text}>{item.amount}</Text>
+          <TouchableOpacity onPress={() => dispatch(onAddAmountItem(item))}>
+            <AntDesign name={'pluscircleo'} size={18} />
+          </TouchableOpacity>
+          
         </View>
       </View>
 

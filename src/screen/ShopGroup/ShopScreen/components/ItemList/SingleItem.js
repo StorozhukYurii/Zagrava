@@ -10,11 +10,16 @@ import {
 } from 'react-native';
 import {colors, dimension, fontSizes} from '../../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {onToggleLike} from '../../../../../store/listingsSlice/listingsSlice';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {
+  onAddAmountItem,
+  onDecAmountItem,
+  onToggleLike,
+} from '../../../../../store/listingsSlice/listingsSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
-import { onAddToCart } from '../../../../../store/cartSlice/cartSlice';
+import {onAddToCart} from '../../../../../store/cartSlice/cartSlice';
 
 const SingleItem = memo(({item}) => {
   const dispatch = useDispatch();
@@ -22,6 +27,14 @@ const SingleItem = memo(({item}) => {
 
   // const cart = useSelector(state => state.cart.cart)
   const navigation = useNavigation();
+  const onAddItemToBasket = () => {
+    // dispatch(onAddToCart(item))
+    dispatch(onAddAmountItem(item));
+  };
+
+  const onRemoveItemFromBasket = () => {
+    dispatch(onDecAmountItem(item));
+  };
 
   const onOpenProduct = () => {
     navigation.navigate(screens.Product, {item, id: item.id});
@@ -90,14 +103,26 @@ const SingleItem = memo(({item}) => {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => dispatch(onAddToCart(item))} style={styles.priceContainer}>
-            <Ionicons
-              name={'add-circle-outline'}
-              size={24}
-              color={colors.main}
-            />
-            <Text style={styles.priceText}>{item.price} $</Text>
-          </TouchableOpacity>
+          <View style={styles.priceContainer}>
+            {item.amount >= 1 && (
+              <View style={{flexDirection:'row'}}>
+                <AntDesign
+                  name={'minuscircleo'}
+                  size={24}
+                  color={colors.main}
+                  onPress={() => onRemoveItemFromBasket()}
+                />
+                <Text style={styles.priceText}>{item.amount}</Text>
+              </View>
+            )}
+
+            <Pressable
+              style={{flexDirection: 'row'}}
+              onPress={() => onAddItemToBasket()}>
+              <AntDesign name={'pluscircleo'} size={24} color={colors.main} />
+              <Text style={styles.priceText}>{item.price} $</Text>
+            </Pressable>
+          </View>
         </View>
         <Text>{item.likesCount} likes</Text>
       </View>
@@ -145,16 +170,16 @@ const styles = StyleSheet.create({
   priceContainer: {
     backgroundColor: colors.secondary,
     padding: 5,
-    width: dimension.width / 3,
-    justifyContent:'space-evenly',
-    // alignItems: 'center',
+    // width: dimension.width / 3,
+    justifyContent: 'space-evenly',
     borderRadius: dimension.borderRadius,
-    flexDirection:'row',
+    flexDirection: 'row',
   },
-  priceText:{
-    color:colors.main,
-    fontWeight:'500',
-    fontSize:fontSizes.large
+  priceText: {
+    color: colors.main,
+    fontWeight: '500',
+    fontSize: fontSizes.large,
+    marginHorizontal: dimension.medium,
   },
   itemRating: {
     flexDirection: 'row',

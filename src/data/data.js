@@ -20,6 +20,7 @@ export const DATA_ITEM = [
     type: 'Wicca',
     like: false,
     likesCount: '985',
+    amount:0,
   },
   {
     id: '2',
@@ -39,6 +40,7 @@ export const DATA_ITEM = [
     type: 'Celtic god',
     like: false,
     likesCount: '385',
+    amount:0,
   },
   {
     id: '3',
@@ -58,6 +60,7 @@ export const DATA_ITEM = [
     type: 'Celtic god',
     like: false,
     likesCount: '185',
+    amount:0,
   },
   {
     id: '4',
@@ -77,6 +80,7 @@ export const DATA_ITEM = [
     type: 'Celtic god',
     like: false,
     likesCount: '865',
+    amount:0,
   },
   {
     id: '5',
@@ -95,6 +99,7 @@ export const DATA_ITEM = [
     type: 'Scandinavian god',
     like: false,
     likesCount: '89',
+    amount:0,
   },
   {
     id: '6',
@@ -113,6 +118,7 @@ export const DATA_ITEM = [
     type: 'Scandinavian god',
     like: false,
     likesCount: '25',
+    amount:0,
   },
   {
     id: '7',
@@ -132,6 +138,7 @@ export const DATA_ITEM = [
     type: 'Wicca',
     like: false,
     likesCount: '854',
+    amount:0,
   },
   {
     id: '8',
@@ -151,6 +158,7 @@ export const DATA_ITEM = [
     type: 'Scandinavian god',
     like: false,
     likesCount: '856',
+    amount:0,
   },
   {
     id: '9',
@@ -169,6 +177,7 @@ export const DATA_ITEM = [
     type: 'Scandinavian god',
     like: false,
     likesCount: '785',
+    amount:0,
   },
   {
     id: '10',
@@ -187,6 +196,7 @@ export const DATA_ITEM = [
     type: 'Scandinavian god',
     like: false,
     likesCount: '845',
+    amount:0,
   },
   {
     id: '11',
@@ -206,6 +216,7 @@ export const DATA_ITEM = [
     type: 'Sumerian',
     like: false,
     likesCount: '75',
+    amount:0,
   },
   {
     id: '12',
@@ -223,6 +234,7 @@ export const DATA_ITEM = [
     type: 'Scandinavian god',
     like: false,
     likesCount: '785',
+    amount:0,
   },
   {
     id: '13',
@@ -240,6 +252,7 @@ export const DATA_ITEM = [
     type: 'Candel holders',
     like: false,
     likesCount: '485',
+    amount:0,
   },
   {
     id: '14',
@@ -257,6 +270,7 @@ export const DATA_ITEM = [
     type: 'Candel holders',
     like: false,
     likesCount: '855',
+    amount:0,
   },
   {
     id: '15',
@@ -276,5 +290,6 @@ export const DATA_ITEM = [
     type: 'Ancient Greece',
     like: false,
     likesCount: '85',
+    amount:0,
   },
 ];

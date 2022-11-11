@@ -16,6 +16,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Separator from '../../../components/Separator';
 import {useDispatch, useSelector} from 'react-redux';
 import {onToggleLike} from '../../../store/listingsSlice/listingsSlice';
+import { onToggleLikeCart } from '../../../store/cartSlice/cartSlice';
 import {useEffect} from 'react';
 import { styles } from './style';
 
@@ -27,7 +28,7 @@ const ProductScreen = ({route}) => {
   const dispatch = useDispatch();
   const userName = useSelector(state => state.user.name);
 
-  const [like, setLike] = useState(item.like);
+  const [like, setLike] = useState(null);
   const [countLike, setCountLike] = useState(0);
 
   const toggleLike = () => {
@@ -39,6 +40,7 @@ const ProductScreen = ({route}) => {
 
   useEffect(() => {
     setCountLike(item.likesCount);
+    setLike(item.like)
   }, []);
 
   useLayoutEffect(() => {

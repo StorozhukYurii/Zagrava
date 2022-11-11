@@ -22,7 +22,6 @@ const ItemList = ({ }) => {
 
   const [isSingleItem, setSingleItem] = useState(true);
 
-  
   const listings = useSelector(state => state.listings.listings)
 
   const onToggleList = () => {

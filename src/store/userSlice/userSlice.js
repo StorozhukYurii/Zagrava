@@ -7,7 +7,7 @@ const initialState = {
     phone_number:'+38(066)1245599',
     city:['Ternopil'],
     is_business:false,
-
+    rank:'beginner'
 }
 
 export const userSlice = createSlice({
