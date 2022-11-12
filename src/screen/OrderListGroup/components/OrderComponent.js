@@ -5,23 +5,20 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import { onAddAmountItem, onDecAmountItem } from '../../../store/listingsSlice/listingsSlice';
+import { onAddAmountItem, onDecAmountItem, onDeleteItemFromBasket } from '../../../store/listingsSlice/listingsSlice';
 
 const OrderComponent = ({item}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch()
+  const {id} = item
 
   const [counter, setCounter] = useState(1);
 
- 
-
-//  useEffect(() => {
-//   qqq(item.id)
-//  },[])
-  
-
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.closeButton} onPress={() =>  dispatch(onDeleteItemFromBasket({id}))}>
+        <AntDesign name={'closecircle'} size={20} color={colors.darkGrey}/>
+      </TouchableOpacity>
       <Image source={{uri: item.img[0]}} style={styles.image} />
 
       <View style={styles.nameContainer}>
@@ -29,19 +26,19 @@ const OrderComponent = ({item}) => {
           item.name.length > 40 ? '...' : ''
         }`}</Text>
         <View style={styles.quantityConteiner}>
-          <TouchableOpacity onPress={() => dispatch(onDecAmountItem(item))}>
-            <AntDesign name={'minuscircleo'} size={18} />
+          <TouchableOpacity onPress={() => dispatch(onDecAmountItem(item))} disabled={item.amount <= 1? true : false}>
+            <AntDesign name={'minuscircleo'} size={18} color={item.amount <= 1 ? colors.darkGrey : colors.dark}/>
           </TouchableOpacity>
           <Text style={styles.text}>{item.amount}</Text>
           <TouchableOpacity onPress={() => dispatch(onAddAmountItem(item))}>
-            <AntDesign name={'pluscircleo'} size={18} />
+            <AntDesign name={'pluscircleo'} size={18} color={colors.dark} />
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={styles.priceContainer}>
-        <Text style={styles.text}>{item.price}$ /1</Text>
-        <Text style={[styles.text, {color:colors.main, marginTop:dimension.small}]}>{item.price * item.amount}$ tot</Text>
+        <Text style={styles.text}>{item.price.toFixed(2)}$ /1</Text>
+        <Text style={[styles.text, {color:colors.main, marginTop:dimension.small}]}>{(item.price * item.amount).toFixed(2)}$ total</Text>
       </View>
     </View>
   );
@@ -79,7 +76,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: fontSizes.medium,
     fontWeight: '700',
+    color:colors.dark
   },
+  closeButton:{
+    position:'absolute',
+    zIndex:1,
+    top:-1,
+    right:1
+  }
 });
 
 export default OrderComponent;

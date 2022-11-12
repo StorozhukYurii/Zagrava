@@ -7,9 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../../styles';
 import { useNavigation } from '@react-navigation/native';
@@ -42,7 +40,7 @@ const SearchInput = props => {
           placeholder="Search..."
         />
         <Pressable style={styles.close}>
-          <Icon name={'backspace-outline'} size={24} />
+          <Ionicons name={'backspace-outline'} size={24} />
         </Pressable>
       </View>
       <TouchableOpacity style={styles.basketIcon} onPress={onOpenOrderList}>

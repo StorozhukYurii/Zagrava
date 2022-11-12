@@ -10,6 +10,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderLogo from '../../../components/HeaderLogo';
@@ -18,6 +19,7 @@ import {colors, dimension, fontSizes} from '../../../styles';
 import OrderComponent from '../components/OrderComponent';
 import {onAddToCart} from '../../../store/cartSlice/cartSlice';
 import {onClearBasket} from '../../../store/listingsSlice/listingsSlice';
+import screens from '../../../constants/screens';
 
 const OrderListScreen = () => {
   useLayoutEffect(() => {
@@ -32,58 +34,97 @@ const OrderListScreen = () => {
   const cart = useSelector(state => state.cart.cart);
   const listings = useSelector(state => state.listings.listings);
 
+  const navigationToStore = () => {
+    navigation.navigate(screens.ShopTab)
+  }
+
   let itemInBasketPriceSum = listings.reduce(
     (sum, item) => sum + item.price * item.amount,
     0,
   );
 
-  const car = [];
+  const displayedItem = [];
   listings.map(item => {
     if (item.amount >= 1) {
-      car.push(item);
+      displayedItem.push(item);
     }
   });
 
   const addToCart = () => {
-    if(car.length >= 1){
-      dispatch(onAddToCart(car))
+    if (displayedItem.length >= 1) {
+      dispatch(onAddToCart(displayedItem));
     }
   };
 
   const removeOrderList = () => {
     dispatch(onClearBasket());
-    setTimeout(() => {
-      navigation.goBack();
-    }, 1000);
+    // setTimeout(() => {
+    //   navigation.goBack();
+    // }, 1000);
+  };
+
+  const ListEmpty = () => {
+    return (
+      <View style={styles.emptyListContainer}>
+        <Image style={styles.emptyListImage} source={require('../../../assets/gallery/vik.png')} />
+        <Text style={styles.emptyListText}>Your basket is empty. To add offers, go to the store</Text>
+        <Button title='Go to store' color={colors.main} onPress={navigationToStore}/>
+      </View>
+    );
+  };
+
+  const ListHeader = () => {
+    return (
+      <>
+        <Text style={styles.textHeadline}>Confirm and pay</Text>
+        <Separator small />
+      </>
+    );
+  };
+
+  const ListFooter = () => {
+    return (
+      <Pressable style={styles.addMoreContainer} onPress={navigationToStore}>
+        <Text style={styles.addMoreText}>Add more item</Text>
+      </Pressable>
+    );
   };
 
   return (
     <View style={{paddingHorizontal: dimension.small, flex: 1}}>
-      <Text style={styles.textHeadline}>Confirm and pay</Text>
-      <Separator small />
       <FlatList
-        data={car}
+        data={displayedItem}
         keyExtractor={(item, index) => index}
         key={(item, index) => index}
         renderItem={({item}) => <OrderComponent item={item} />}
+        ListHeaderComponent={displayedItem.length >= 1 ? ListHeader : null}
+        ListFooterComponent={displayedItem.length >= 1 ? ListFooter : null}
+        ListEmptyComponent={ListEmpty}
       />
-      <View style={styles.totalPriceContainer}>
-        <Text style={styles.textHeadline}>Total:</Text>
-        <Text style={[styles.textHeadline, {color: colors.main}]}>
-          {itemInBasketPriceSum} $
-        </Text>
-      </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, {backgroundColor: colors.secondaryDark}]}
-          onPress={removeOrderList}>
-          <Text style={styles.buttonText}>Clear basket</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button]} onPress={addToCart}>
-          <Text style={styles.buttonText}>Confirm and pay</Text>
-        </TouchableOpacity>
-      </View>
+      {displayedItem.length >= 1 ? (
+        <>
+          <Separator big />
+
+          <View style={styles.totalPriceContainer}>
+            <Text style={styles.textHeadline}>Total:</Text>
+            <Text style={[styles.textHeadline, {color: colors.main}]}>
+              {itemInBasketPriceSum.toFixed(2)} $
+            </Text>
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor: colors.secondaryDark}]}
+              onPress={removeOrderList}>
+              <Text style={styles.buttonText}>Clear basket</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button]} onPress={addToCart}>
+              <Text style={styles.buttonText}>Confirm and pay</Text>
+            </TouchableOpacity>
+          </View>
+        </>
+      ) : null}
     </View>
   );
 };
@@ -101,17 +142,45 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: dimension.medium,
+    marginTop: dimension.small,
     marginBottom: dimension.small,
   },
   button: {
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.main,
     padding: 10,
     borderRadius: dimension.borderRadius / 2,
   },
   buttonText: {
     fontSize: fontSizes.medium,
+    color: colors.dark,
+    fontWeight: '500',
   },
+  addMoreContainer: {
+    alignItems: 'flex-end',
+    marginTop: dimension.xsmall,
+  },
+  addMoreText: {
+    fontSize: fontSizes.medium,
+    color: colors.main,
+    textDecorationLine: 'underline',
+  },
+  emptyListContainer:{
+    justifyContent:'center',
+    alignItems:'center',
+    marginTop:dimension.height*0.15
+  },
+  emptyListImage:{
+    height:300,
+    width:300,
+  },
+  emptyListText:{
+    fontSize:fontSizes.medium,
+    fontWeight:'500',
+    letterSpacing:0.5,
+    width:dimension.width*0.75,
+    textAlign:'center',
+    marginBottom:dimension.xsmall
+  }
 });
 
 export default OrderListScreen;
