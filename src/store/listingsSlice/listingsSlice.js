@@ -19,18 +19,46 @@ export const listingsSlice = createSlice({
                 if(item.id === action.payload.id){
                     if(item.like === false){
                         item.likesCount = (Number(item.likesCount) + 1)
-                      } else {
+                      } else if(item.like === true) {
                         item.likesCount = (Number(item.likesCount) - 1)
                       }
                      item.like = !item.like
+                    //  console.log(item)
                 }
             })
-        }
+        },
+        onAddAmountItem:(state,actions) => {
+            state.listings.map(item => {
+                if(item.id === actions.payload.id){
+                    item.amount = item.amount + 1
+                }
+            })
+        },
+        onDecAmountItem:(state,actions) => {
+            state.listings.map(item => {
+                if(item.id === actions.payload.id){
+                    item.amount = item.amount - 1
+                }
+            })
+        },
+        onClearBasket:(state,actions) => {
+            state.listings.map(item => {
+                item.amount = 0
+            })
+        },
+        onDeleteItemFromBasket:(state,actions) => {
+            state.listings.map(item => {
+                if(item.id === actions.payload.id){
+                    item.amount = 0
+                }
+            })
+        },
+        
     },
 })
 
 const {actions, reducer} = listingsSlice
 
-export const {onToggleLike} = actions
+export const {onToggleLike, onAddAmountItem, onDecAmountItem, onClearBasket, onDeleteItemFromBasket} = actions
 
 export default reducer

@@ -32,18 +32,16 @@ export const styles = StyleSheet.create({
     },
     priceContainer: {
       backgroundColor: colors.secondary,
-      padding: 5,
-      width: dimension.width / 3,
-      // justifyContent: 'center',
-      // alignItems: 'center',
-      borderRadius: dimension.borderRadius,
-      flexDirection: 'row',
-      justifyContent: 'space-around',
+    padding: 5,
+    justifyContent: 'space-evenly',
+    borderRadius: dimension.borderRadius,
+    flexDirection: 'row',
     },
     priceText: {
       color: colors.main,
       fontWeight: '500',
       fontSize: fontSizes.large,
+      marginHorizontal:dimension.medium,
     },
     itemRating: {
       flexDirection: 'row',

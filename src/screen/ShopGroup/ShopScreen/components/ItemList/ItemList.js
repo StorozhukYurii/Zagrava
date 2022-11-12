@@ -15,6 +15,7 @@ import SingleItem from './SingleItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
+import BasketIcon from '../../../../../components/BasketIcon/BasketIcon';
 
 const ItemList = ({ }) => {
 
@@ -22,7 +23,6 @@ const ItemList = ({ }) => {
 
   const [isSingleItem, setSingleItem] = useState(true);
 
-  
   const listings = useSelector(state => state.listings.listings)
 
   const onToggleList = () => {
@@ -49,6 +49,7 @@ const ItemList = ({ }) => {
           <Ionicons
             size={25}
             name={isSingleItem ? 'layers-outline' : 'map-outline'}
+            color={colors.dark}
           />
         </Pressable>
       </View>
@@ -81,6 +82,7 @@ const ItemList = ({ }) => {
           columnWrapperStyle={!isSingleItem ? columnWrapperStyle : null}
         />
       </View>
+      <BasketIcon/>
     </View>
   );
 };

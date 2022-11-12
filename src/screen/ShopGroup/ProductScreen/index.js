@@ -9,13 +9,15 @@ import {
   TextInput,
   ScrollView,
   Image,
+  Pressable
 } from 'react-native';
 import HeaderLogo from '../../../components/HeaderLogo';
 import {dimension, colors, fontSizes} from '../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Separator from '../../../components/Separator';
 import {useDispatch, useSelector} from 'react-redux';
-import {onToggleLike} from '../../../store/listingsSlice/listingsSlice';
+import {onToggleLike, onAddAmountItem, onDecAmountItem} from '../../../store/listingsSlice/listingsSlice';
 import {useEffect} from 'react';
 import { styles } from './style';
 
@@ -27,8 +29,9 @@ const ProductScreen = ({route}) => {
   const dispatch = useDispatch();
   const userName = useSelector(state => state.user.name);
 
-  const [like, setLike] = useState(item.like);
+  const [like, setLike] = useState(null);
   const [countLike, setCountLike] = useState(0);
+  const [countAmount, setCountAmount] = useState(0)
 
   const toggleLike = () => {
     dispatch(onToggleLike({id}));
@@ -39,6 +42,8 @@ const ProductScreen = ({route}) => {
 
   useEffect(() => {
     setCountLike(item.likesCount);
+    setLike(item.like)
+    setCountAmount(item.amount)
   }, []);
 
   useLayoutEffect(() => {
@@ -59,6 +64,16 @@ const ProductScreen = ({route}) => {
         setImage(slide);
       }
     }
+  };
+
+  const onAddItemToBasket = () => {
+    dispatch(onAddAmountItem(item));
+    setCountAmount(countAmount + 1)
+  };
+
+  const onRemoveItemFromBasket = () => {
+    dispatch(onDecAmountItem(item));
+    setCountAmount(countAmount - 1)
   };
   return (
     <ScrollView>
@@ -121,14 +136,26 @@ const ProductScreen = ({route}) => {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.priceContainer}>
-            <Ionicons
-              name={'add-circle-outline'}
-              size={24}
-              color={colors.main}
-            />
-            <Text style={styles.priceText}>{item.price} $</Text>
-          </TouchableOpacity>
+          <View style={styles.priceContainer}>
+            {countAmount >= 1 && (
+              <View style={{flexDirection:'row'}}>
+                <AntDesign
+                  name={'minuscircleo'}
+                  size={24}
+                  color={colors.main}
+                  onPress={() => onRemoveItemFromBasket()}
+                />
+                <Text style={styles.priceText}>{countAmount}</Text>
+              </View>
+            )}
+
+            <Pressable
+              style={{flexDirection: 'row'}}
+              onPress={() => onAddItemToBasket()}>
+              <AntDesign name={'pluscircleo'} size={24} color={colors.main} />
+              <Text style={styles.priceText}>{item.price} $</Text>
+            </Pressable>
+          </View>
         </View>
         <Text>{countLike} likes</Text>
         <Text style={styles.title}>{item.name}</Text>

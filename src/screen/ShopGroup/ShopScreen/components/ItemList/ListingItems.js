@@ -10,11 +10,10 @@ import {
 import {colors, dimension} from '../../../../../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Separator from '../../../../../components/Separator';
-import { onToggleLike } from '../../../../../store/listingsSlice/listingsSlice';
+import { onAddAmountItem, onToggleLike } from '../../../../../store/listingsSlice/listingsSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
-import { onAddToCart } from '../../../../../store/cartSlice/cartSlice';
 
 const ListingItems = memo(({item}) => {
 
@@ -27,6 +26,9 @@ const ListingItems = memo(({item}) => {
     navigation.navigate(screens.Product, {item, id:item.id})
   }
 
+  const  onAddItemToBasket = () => {
+    dispatch(onAddAmountItem(item))
+  }
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity activeOpacity={0.9} style={{width:dimension.width/2.15}} onPress={onOpenProduct}>
@@ -76,7 +78,7 @@ const ListingItems = memo(({item}) => {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity onPress={() => dispatch(onAddToCart(item))} style={styles.priceContainer}>
+          <TouchableOpacity onPress={() => onAddItemToBasket()} style={styles.priceContainer}>
             <Text style={{color: colors.main}}>{item.price}$</Text>
           </TouchableOpacity>
         </View>
