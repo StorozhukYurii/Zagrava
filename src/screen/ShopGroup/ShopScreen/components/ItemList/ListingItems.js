@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
 
-const ListingItems = memo(({item}) => {
+const ListingItems = memo(({item, isFavorite, data}) => {
 
   const dispatch = useDispatch()
   const {id} = item
@@ -82,7 +82,10 @@ const ListingItems = memo(({item}) => {
             <Text style={{color: colors.main}}>{item.price}$</Text>
           </TouchableOpacity>
         </View>
-         <Separator small />
+         {isFavorite && data.length <=2 ? null : (
+           <Separator small />
+         )}
+        
       </View>
      
     </View>

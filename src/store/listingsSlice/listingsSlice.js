@@ -53,12 +53,15 @@ export const listingsSlice = createSlice({
                 }
             })
         },
+        onFilterFromLowerPrice:(state) => {
+            return  state.listings.sort((a,b) => a.price > b.price ? 1 : -1)
+        }
         
     },
 })
 
 const {actions, reducer} = listingsSlice
 
-export const {onToggleLike, onAddAmountItem, onDecAmountItem, onClearBasket, onDeleteItemFromBasket} = actions
+export const {onToggleLike, onAddAmountItem, onDecAmountItem, onClearBasket, onDeleteItemFromBasket, onFilterFromLowerPrice} = actions
 
 export default reducer

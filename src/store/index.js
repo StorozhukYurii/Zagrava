@@ -3,6 +3,7 @@ import listings from './listingsSlice/listingsSlice';
 import cart from './cartSlice/cartSlice'
 import purchase from './purchaseSlice/purchaseSlice'
 import user from './userSlice/userSlice'
+import filter from './filterSlice/filterSlice'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   persistStore,
@@ -18,12 +19,12 @@ import {
 const persistConfig = {
   key: 'root',
   whitelist:[
-    // 'listings'
+    'listings'
   ],
   storage: AsyncStorage,
 };
 
-const rootReducer = combineReducers({listings, cart, purchase, user});
+const rootReducer = combineReducers({listings, cart, purchase, user, filter});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
