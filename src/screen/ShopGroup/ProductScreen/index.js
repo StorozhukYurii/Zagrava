@@ -91,6 +91,7 @@ const ProductScreen = ({route}) => {
           onScroll={({nativeEvent}) => onchange(nativeEvent)}
           showsHorizontalScrollIndicator={false}
           pagingEnabled
+          scrollEventThrottle={0}
           horizontal>
           {img.map((e, index) => (
             <ImageBackground

@@ -93,12 +93,12 @@ export const styles = StyleSheet.create({
     },
     dotActive: {
       margin: 3,
-      fontSize: 30,
+      fontSize: 35,
       color: colors.main,
     },
     dot: {
       margin: 3,
-      fontSize: 30,
+      fontSize: 35,
       color: colors.white,
     },
   });
