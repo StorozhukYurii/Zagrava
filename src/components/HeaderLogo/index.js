@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    height: 40,
-    width: 40,
+    height: 30,
+    width: 30,
     marginLeft: 10,
   },
   text: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.headline,
     fontWeight: '800',
     textShadowColor: colors.darkGrey,
-    textShadowRadius: 10,
+    textShadowRadius: 5,
     color: colors.darkGrey,
     letterSpacing: 4,
   },

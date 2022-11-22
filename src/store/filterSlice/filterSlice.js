@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  initialFilter: ['All', 'Price', 'Type of product', 'Material', 'Rating'],
-  
-  activeFilter:'All',
+  initialFilter: ['All', 'List display order', 'Type of product', 'Material'],
 
-  allArray:['All', 'Favorite'],
-  priceArray:['Price', 'From a higher price', 'From a lower price'],
-  typeArray:[
+  activeFilter: 'All',
+
+  allArray: ['All', 'Favorite'],
+  orderArray: ['List display order', 'From a higher price', 'From a lower price', 'From a higher rating', 'From a lower rating'],
+  typeArray: [
     'Type of product',
     'Celtic god',
     'Wicca',
@@ -16,37 +16,44 @@ const initialState = {
     'Candel holders',
     'Ancient Greece',
   ],
-  materialArray:['Material', 'Oak', 'Pine'],
-  ratingArray:['Rating', 'From a higher rating', 'From a lower rating'],
+  materialArray: ['Material', 'Oak', 'Pine'],
 };
 
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    onChangeActiveFilter:(state, actions) => {
-        state.activeFilter = actions.payload
+    onChangeActiveFilter: (state, actions) => {
+      actions.payload !== 'Type of product' 
+      actions.payload !== 'Material' ||
+      actions.payload !== 'List display order'
+        ? (state.activeFilter = actions.payload)
+        : (state.activeFilter = null);
+      // state.activeFilter = actions.payload
     },
-    onChangeAllFilter:(state, actions) => {
-        state.initialFilter[0] = actions.payload
+    onChangeAllFilter: (state, actions) => {
+      state.initialFilter[0] = actions.payload;
     },
-    onChangePriceFilter:(state, actions) => {
-        state.initialFilter[1] = actions.payload
+    onChangeOrderFilter: (state, actions) => {
+      state.initialFilter[1] = actions.payload;
     },
-    onChangeTypeFilter:(state, actions) => {
-        state.initialFilter[2] = actions.payload
+    onChangeTypeFilter: (state, actions) => {
+      state.initialFilter[2] = actions.payload;
     },
-    onChangeMaterialFilter:(state, actions) => {
-        state.initialFilter[3] = actions.payload
-    },
-    onChangeRatingFilter:(state, actions) => {
-        state.initialFilter[4] = actions.payload
+    onChangeMaterialFilter: (state, actions) => {
+      state.initialFilter[3] = actions.payload;
     },
   },
 });
 
 const {actions, reducer} = filterSlice;
 
-export const {onChangeActiveFilter, onChangeMaterialFilter,onChangeAllFilter, onChangePriceFilter, onChangeRatingFilter, onChangeTypeFilter} = actions;
+export const {
+  onChangeActiveFilter,
+  onChangeMaterialFilter,
+  onChangeAllFilter,
+  onChangeOrderFilter,
+  onChangeTypeFilter,
+} = actions;
 
 export default reducer;

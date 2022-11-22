@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Pressable,
@@ -9,98 +9,35 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Separator from '../../../../../components/Separator';
-import {colors} from '../../../../../styles';
+import { colors } from '../../../../../styles';
 import ListingItems from './ListingItems';
 import SingleItem from './SingleItem';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
 import BasketIcon from '../../../../../components/BasketIcon/BasketIcon';
-import {createSelector} from 'reselect'
-import { onFilterFromLowerPrice } from '../../../../../store/listingsSlice/listingsSlice';
+import { createSelector } from 'reselect';
 
-const ItemList = ({}) => {
+const ItemList = ({ }) => {
   const dispatch = useDispatch();
 
   const [isSingleItem, setSingleItem] = useState(true);
-
-  const listings = useSelector(state => state.listings.listings);
-  const initialFilter = useSelector(state => state.filter.initialFilter);
-  const activeFilter = useSelector(state => state.filter.activeFilter)
 
   const onToggleList = () => {
     setSingleItem(!isSingleItem);
   };
 
-  const lengthOfListing = Object.keys(listings).length;
-  const columnWrapperStyle = {padding: 5};
+  const columnWrapperStyle = { padding: 5 };
 
-  // const navigation = useNavigation()
-
-  // const onOpenProduct = (item) => {
-  //   navigation.navigate(screens.Product, {item})
-  // }
-  //   const filteredHeroesSelector = createSelector(
-  //     (state) => state.filters.activeFilter,
-  //     (state) => state.heroes.heroes,
-  //     (filter, heroes) => {
-  //         if (filter === 'all') {
-  //             console.log('render');
-  //             return heroes;
-  //         } else {
-  //             return heroes.filter(item => item.element === filter);
-  //         }
-  //     }
-  // );
   const filteredItemSelector = createSelector(
     state => state.listings.listings,
     state => state.filter.initialFilter,
     (list, filters) => {
-      if(filters.includes('All')){
-        return list
-      } else if(filters.includes('Favorite')){
-        return list.filter(item => item.like === true)
-      }else 
-      if(filters.includes('From a higher price')){
-        return  list.slice().sort((a,b) => a.price > b.price ? -1 : 1)
-      } else if(filters.includes('From a lower price')){
-        return  list.slice().sort((a,b) => a.price > b.price ? 1 : -1)
-      } else
-       if(filters.includes('Celtic god')){
-        return list.filter(item => item.type === 'Celtic god')
-       } else
-       if(filters.includes('Wicca')){
-        return list.filter(item => item.type === 'Wicca')
-       } else
-       if(filters.includes('Scandinavian god')){
-        return list.filter(item => item.type === 'Scandinavian god')
-       } else
-       if(filters.includes('Sumerian')){
-        return list.filter(item => item.type === 'Sumerian')
-       } else
-       if(filters.includes('Candel holders')){
-        return list.filter(item => item.type === 'Candel holders')
-       } else
-       if(filters.includes('Ancient Greece')){
-        return list.filter(item => item.type === 'Ancient Greece')
-       } else
-       if(filters.includes('Oak')){
-        return list.filter(item => item.material === 'Oak')
-       } else
-       if(filters.includes('Pine')){
-        return list.filter(item => item.material === 'Pine')
-       } else 
-       if(filters.includes('From a higher rating')){
-        return  list.slice().sort((a,b) => a.rating > b.rating ? -1 : 1)
-    } else 
-    if(filters.includes('From a lower rating')){
-     return  list.slice().sort((a,b) => a.rating > b.rating ? 1 : -1)
- }
-  }
-  )
+      return list.filter(item => filters.includes('Favorite') ? item.like === true : list).slice().sort((a, b) => (filters.includes('From a higher price') ? (a.price > b.price ? -1 : 1) : filters.includes('From a lower price') ? (a.price > b.price ? 1 : -1) : filters.includes('From a higher rating') ? (a.rating > b.rating ? -1 : 1) : filters.includes('From a lower rating') ? (a.rating > b.rating ? 1 : -1) : list)).filter(item => filters.includes('Celtic god') ? item.type === 'Celtic god' : filters.includes('Wicca') ? item.type === 'Wicca' : filters.includes('Scandinavian god') ? item.type === 'Scandinavian god' : filters.includes('Sumerian') ? item.type === 'Sumerian' : filters.includes('Candel holders') ? item.type === 'Candel holders' : filters.includes('Ancient Greece') ? item.type === 'Ancient Greece' : list).filter(item => filters.includes('Oak') ? item.material === 'Oak' : filters.includes('Pine') ? item.material === 'Pine' : list)
+    },
+  );
 
-  const filteredListing = useSelector(filteredItemSelector)
-  console.log(filteredListing.length, 'fffffff')
+  const filteredListing = useSelector(filteredItemSelector);
 
   const ListHeader = () => {
     return (
@@ -121,11 +58,11 @@ const ItemList = ({}) => {
 
   return (
     <View style={styles.container}>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={filteredListing}
           keyExtractor={item => item.id}
-          renderItem={({item}) =>
+          renderItem={({ item }) =>
             isSingleItem ? (
               <SingleItem item={item} />
             ) : (

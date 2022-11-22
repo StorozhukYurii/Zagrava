@@ -10,17 +10,16 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import {colors, dimension} from '../../styles';
-import { onChangeAllFilter,onChangeMaterialFilter, onChangePriceFilter, onChangeRatingFilter, onChangeTypeFilter, onChangeActiveFilter } from '../../store/filterSlice/filterSlice';
+import { onChangeAllFilter,onChangeMaterialFilter, onChangeOrderFilter, onChangeTypeFilter, onChangeActiveFilter } from '../../store/filterSlice/filterSlice';
 
 const FilterModal = ({changeModalVisible}) => {
   const dispatch = useDispatch()
 
     const initialFilter = useSelector(state => state.filter.initialFilter)
     const activeFilter = useSelector(state => state.filter.activeFilter)
-    const priceArray = useSelector(state => state.filter.priceArray)
+    const orderArray = useSelector(state => state.filter.orderArray)
     const typeArray = useSelector(state => state.filter.typeArray)
     const materialArray = useSelector(state => state.filter.materialArray)
-    const ratingArray = useSelector(state => state.filter.ratingArray)
     const allArray = useSelector(state => state.filter.allArray)
     
   const ModalWindow = ({item, onChange}) => {
@@ -53,10 +52,10 @@ const FilterModal = ({changeModalVisible}) => {
             renderItem={({item}) => <ModalWindow item={item} onChange={onChangeAllFilter} />}
           />
         )}
-        {priceArray.includes(activeFilter) && (
+        {orderArray.includes(activeFilter) && (
           <FlatList
-            data={priceArray}
-            renderItem={({item}) => <ModalWindow item={item} onChange={onChangePriceFilter} />}
+            data={orderArray}
+            renderItem={({item}) => <ModalWindow item={item} onChange={onChangeOrderFilter} />}
           />
         )}
         {typeArray.includes(activeFilter) && (
@@ -71,13 +70,7 @@ const FilterModal = ({changeModalVisible}) => {
             renderItem={({item}) => <ModalWindow item={item} onChange={onChangeMaterialFilter}/>}
           />
         )}
-        {ratingArray.includes(activeFilter) && (
-          <FlatList
-            data={ratingArray}
-            renderItem={({item}) => <ModalWindow item={item} onChange={onChangeRatingFilter} />}
-          />
-        )}
-
+        
         {/* <Button title='label' onPress={() => console.log(item)}/>       */}
         <Pressable onPress={()=>  changeModalVisible(false)}>
           <Text style={styles.textCancel}>Cancel, go back</Text>
