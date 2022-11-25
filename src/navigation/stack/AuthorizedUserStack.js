@@ -13,6 +13,7 @@ import ConfigurationScreen from '../../screen/ProfileGroup/ConfigurationScreen';
 import LanguageScreen from '../../screen/ProfileGroup/LanguageScreen';
 import TermsOfServiceScreen from '../../screen/ProfileGroup/TermsOfServiceScreen';
 import PurchaseScreen from '../../screen/PurchanseHistoryGroup/PurchaseScreen';
+import RankScreen from '../../screen/ProfileGroup/RankScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +64,10 @@ const AuthorizedUserStack = () => (
     <Stack.Screen
       name={screens.Language}
       component={LanguageScreen}
+    />
+    <Stack.Screen
+      name={screens.Rank}
+      component={RankScreen}
     />
     <Stack.Screen
       name={screens.Purchase}

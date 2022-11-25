@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import {
   Pressable,
   StyleSheet,
@@ -14,10 +14,11 @@ import { useNavigation } from '@react-navigation/native';
 import screens from '../../constants/screens';
 import { useSelector } from 'react-redux';
 
-const SearchInput = props => {
-  const {onChangeText, text} = props;
+const SearchInput = memo((props) => {
+  const {changeText, text, onChangeText} = props;
   const cart = useSelector(state => state.cart.cart)
   const listings = useSelector(state => state.listings.listings)
+  const [inputText, setInputText] = useState(text)
 
   let itemInBasketSum = listings.reduce((sum, item) => sum + item.amount, 0)
 
@@ -27,6 +28,13 @@ const SearchInput = props => {
     navigation.navigate(screens.OrderList)
   }
 
+  const change = (event) => {
+    let t = event
+    setInputText(t)
+    changeText(t)
+    // onChangeText(t)
+  }
+  
   return (
     <View style={{flexDirection: 'row'}}>
       <View style={styles.container}>
@@ -35,9 +43,12 @@ const SearchInput = props => {
         </View>
         <TextInput
           style={styles.textInput}
-          onChangeText={onChangeText}
-          value={text}
+          onChange={event => change(event.nativeEvent.text)}
+          value={inputText}
           placeholder="Search..."
+          keyboardType={'web-search'}
+          autoCorrect={false}
+          // onChangeText={(val)=>  onChangeText(val)}
         />
         <Pressable style={styles.close}>
           <Ionicons name={'backspace-outline'} size={24} />
@@ -53,7 +64,7 @@ const SearchInput = props => {
       </TouchableOpacity>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   close: {

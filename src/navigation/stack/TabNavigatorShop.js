@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 
 import screens from '../../constants/screens';
-import {ShopScreen} from '../../screen/ShopGroup/ShopScreen';
+import { ShopScreen } from '../../screen/ShopGroup/ShopScreen';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 

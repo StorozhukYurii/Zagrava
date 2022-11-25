@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 // import {width, height} from '../../../../../styles/dimensions';
 // import ModalPicker from '../../../../../components/ModalPicker';
-import FilterModal from '../../../../../components/FilterModal';
+import FilterModal from '../../../../../modals/FilterModal';
 import {colors} from '../../../../../styles';
 import {onChangeActiveFilter} from '../../../../../store/filterSlice/filterSlice';
 import {useState} from 'react';
@@ -35,9 +35,8 @@ const Category = ({item}) => {
           {/* {chosen === null && item} */}
           {item}
         </Text>
-        <Ionicons size={15} name={'chevron-down-outline'} style={styles.icon} />
+        <Ionicons size={15} name={isModalVisible ? 'chevron-up-outline' : 'chevron-down-outline'} style={styles.icon} />
       </TouchableOpacity>
-      {/* {activeFilter === 'All' ? null : */}
         <Modal
           animationType="fade"
           transparent={true}
@@ -45,9 +44,6 @@ const Category = ({item}) => {
           onRequestClose={() => changeModalVisible(false)}>
           <FilterModal changeModalVisible={changeModalVisible} />
         </Modal>
-        <TouchableOpacity style={{flex:1, backgroundColor:'green'}}>
-
-        </TouchableOpacity>
     </View>
   );
 };

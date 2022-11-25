@@ -11,6 +11,7 @@ export default {
     TermsOfService:'TermsOfService',
     Language:'Language',
     Purchase:'Purchase',
+    Rank:'Rank',
 
     Selling:'Selling',
     Profile:'Profile',

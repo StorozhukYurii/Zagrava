@@ -14,7 +14,9 @@ export const ProfileScreen = () => {
   const name = useSelector(state => state.user.name)
   const city = useSelector(state => state.user.city[0])
   const phone_number = useSelector(state => state.user.phone_number)
-
+  const isAuthorization = useSelector(state => state.auth.isAuthorization)
+  
+  console.log(isAuthorization)
   const navigation = useNavigation()
 
   const onOpenNews = () => {
@@ -49,6 +51,10 @@ export const ProfileScreen = () => {
     navigation.navigate(screens.Language)
   }
 
+  const onOpenRank = () => {
+    navigation.navigate(screens.Rank)
+  }
+
   return (
     <Container>
       <HeaderLogo />
@@ -76,6 +82,8 @@ export const ProfileScreen = () => {
       <AttachmentInProfileScreen text={'My reserve'}  icon={'cart'} onPress={onOpenOrderList}/>
       
       <AttachmentInProfileScreen text={'Favorites'}  icon={'heart'} onPress={onOpenFavorite}/>
+
+      <AttachmentInProfileScreen text={'My rank'}  icon={'basket'} onPress={onOpenRank}/>
 
       <View style={{height:30}}></View>
 

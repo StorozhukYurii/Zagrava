@@ -4,6 +4,7 @@ import cart from './cartSlice/cartSlice'
 import purchase from './purchaseSlice/purchaseSlice'
 import user from './userSlice/userSlice'
 import filter from './filterSlice/filterSlice'
+import auth from './authorizationSlice/authorizationSlice'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   persistStore,
@@ -24,7 +25,7 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const rootReducer = combineReducers({listings, cart, purchase, user, filter});
+const rootReducer = combineReducers({listings, cart, purchase, user, filter, auth});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
