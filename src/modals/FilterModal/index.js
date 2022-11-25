@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Button,
   FlatList,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 10,
     width: dimension.width / 1.2,
-    marginTop: 100,
+    marginTop: Platform.OS === 'android' ? 100 : 145,
     padding: 5,
     borderWidth: 1,
     borderColor: colors.silver,

@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  StatusBar,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderLogo from '../../../components/HeaderLogo';
@@ -19,6 +20,7 @@ import {colors, dimension, fontSizes} from '../../../styles';
 import OrderComponent from '../components/OrderComponent';
 import {onAddToCart} from '../../../store/cartSlice/cartSlice';
 import {onClearBasket} from '../../../store/listingsSlice/listingsSlice';
+import ListEmpty from '../../../components/ListEmpty';
 import screens from '../../../constants/screens';
 
 const OrderListScreen = () => {
@@ -36,8 +38,7 @@ const OrderListScreen = () => {
 
   const navigationToStore = () => {
     navigation.navigate(screens.ShopTab)
-  }
-
+}
   let itemInBasketPriceSum = listings.reduce(
     (sum, item) => sum + item.price * item.amount,
     0,
@@ -61,16 +62,6 @@ const OrderListScreen = () => {
     // setTimeout(() => {
     //   navigation.goBack();
     // }, 1000);
-  };
-
-  const ListEmpty = () => {
-    return (
-      <View style={styles.emptyListContainer}>
-        <Image style={styles.emptyListImage} source={require('../../../assets/gallery/vik.png')} />
-        <Text style={styles.emptyListText}>Your basket is empty. To add offers, go to the store</Text>
-        <Button title='Go to store' color={colors.main} onPress={navigationToStore}/>
-      </View>
-    );
   };
 
   const ListHeader = () => {

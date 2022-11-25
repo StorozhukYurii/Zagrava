@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import {
   Button,
   Pressable,
@@ -16,28 +16,42 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import screens from '../../../../../constants/screens';
 import BasketIcon from '../../../../../components/BasketIcon/BasketIcon';
+import ListEmpty from '../../../../../components/ListEmpty';
 import { createSelector } from 'reselect';
 
-const ItemList = ({ }) => {
-  const dispatch = useDispatch();
-
+const ItemList = memo(({text,filteredListing,a }) => {
+  // const dispatch = useDispatch();
+  // const listings = useSelector(state => state.listings.listings)
   const [isSingleItem, setSingleItem] = useState(true);
+  // let searchItem = (arr, txt) => {
+  //   if (txt.length === 0) {
+  //     return arr
+  //   }
+
+  //   return arr.filter(item => { return item.name.indexOf(txt) > -1 })
+  // }
 
   const onToggleList = () => {
     setSingleItem(!isSingleItem);
+   
   };
+  
 
   const columnWrapperStyle = { padding: 5 };
 
-  const filteredItemSelector = createSelector(
-    state => state.listings.listings,
-    state => state.filter.initialFilter,
-    (list, filters) => {
-      return list.filter(item => filters.includes('Favorite') ? item.like === true : list).slice().sort((a, b) => (filters.includes('From a higher price') ? (a.price > b.price ? -1 : 1) : filters.includes('From a lower price') ? (a.price > b.price ? 1 : -1) : filters.includes('From a higher rating') ? (a.rating > b.rating ? -1 : 1) : filters.includes('From a lower rating') ? (a.rating > b.rating ? 1 : -1) : list)).filter(item => filters.includes('Celtic god') ? item.type === 'Celtic god' : filters.includes('Wicca') ? item.type === 'Wicca' : filters.includes('Scandinavian god') ? item.type === 'Scandinavian god' : filters.includes('Sumerian') ? item.type === 'Sumerian' : filters.includes('Candel holders') ? item.type === 'Candel holders' : filters.includes('Ancient Greece') ? item.type === 'Ancient Greece' : list).filter(item => filters.includes('Oak') ? item.material === 'Oak' : filters.includes('Pine') ? item.material === 'Pine' : list)
-    },
-  );
+  // const filteredItemSelector = createSelector(
+  //   state => state.listings.listings,
+  //   state => state.filter.initialFilter,
+  //   (list, filters) => {
+  //     return list.filter(item => filters.includes('Favorite') ? item.like === true : list)
+  //       .slice().sort((a, b) => (filters.includes('From a higher price') ? (a.price > b.price ? -1 : 1) : filters.includes('From a lower price') ? (a.price > b.price ? 1 : -1) : filters.includes('From a higher rating') ? (a.rating > b.rating ? -1 : 1) : filters.includes('From a lower rating') ? (a.rating > b.rating ? 1 : -1) : list))
+  //       .filter(item => filters.includes('Celtic god') ? item.type === 'Celtic god' : filters.includes('Wicca') ? item.type === 'Wicca' : filters.includes('Scandinavian god') ? item.type === 'Scandinavian god' : filters.includes('Sumerian') ? item.type === 'Sumerian' : filters.includes('Candel holders') ? item.type === 'Candel holders' : filters.includes('Ancient Greece') ? item.type === 'Ancient Greece' : list)
+  //       .filter(item => filters.includes('Oak') ? item.material === 'Oak' : filters.includes('Pine') ? item.material === 'Pine' : list)
+  //   },
+  // );
 
-  const filteredListing = useSelector(filteredItemSelector);
+  // const filteredListing = useSelector(filteredItemSelector);
+  // let a = searchItem(filteredListing, textt.current)
 
   const ListHeader = () => {
     return (
@@ -60,7 +74,7 @@ const ItemList = ({ }) => {
     <View style={styles.container}>
       <View style={{ flex: 1 }}>
         <FlatList
-          data={filteredListing}
+          data={text.length === 0 ? filteredListing : a}
           keyExtractor={item => item.id}
           renderItem={({ item }) =>
             isSingleItem ? (
@@ -76,12 +90,13 @@ const ItemList = ({ }) => {
             isSingleItem ? <Separator big /> : null
           }
           columnWrapperStyle={!isSingleItem ? columnWrapperStyle : null}
+          ListEmptyComponent={ListEmpty}
         />
       </View>
       <BasketIcon />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
