@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, View, Button, Image, StyleSheet } from 'react-native';
 import { dimension, fontSizes, colors } from '../../styles';
+import screens from '../../constants/screens';
 
 const ListEmpty = () => {
     const navigation = useNavigation()
@@ -14,7 +15,7 @@ const ListEmpty = () => {
         <View style={styles.emptyListContainer}>
             <Image style={styles.emptyListImage} source={require('../../assets/gallery/vik.png')} />
             <Text style={styles.emptyListText}>Your basket is empty. To add offers, go to the store</Text>
-            {/* <Button title='Go to store' color={colors.main} onPress={navigationToStore} /> */}
+            <Button title='Go to store' color={colors.main} onPress={navigationToStore} />
         </View>
     );
 };

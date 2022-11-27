@@ -12,6 +12,8 @@ export default {
     Language:'Language',
     Purchase:'Purchase',
     Rank:'Rank',
+    LogIn:'Log in',
+    SingUp:'Sing up',
 
     Selling:'Selling',
     Profile:'Profile',

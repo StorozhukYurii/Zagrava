@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Container from '../../../components/Container'
 import ListingItems from '../../ShopGroup/ShopScreen/components/ItemList/ListingItems'
 import {colors, dimension, fontSizes} from '../../../styles';
+import HeaderLogo from '../../../components/HeaderLogo';
 
 
 const FavoriteScreen = () => {
@@ -30,7 +31,8 @@ const FavoriteScreen = () => {
   };
 
   return (
-    <Container style={styles.container}>
+    <Container>
+      <HeaderLogo reverse goBack/>
       <FlatList
           data={displayedItem}
           keyExtractor={item => item.id}
@@ -51,10 +53,6 @@ const FavoriteScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container:{
-    backgroundColor:'red',
-    paddingHorizontal:10
-  },
   emptyListContainer:{
     justifyContent:'center',
     alignItems:'center',
