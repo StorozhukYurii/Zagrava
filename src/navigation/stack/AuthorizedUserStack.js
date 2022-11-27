@@ -14,6 +14,8 @@ import LanguageScreen from '../../screen/ProfileGroup/LanguageScreen';
 import TermsOfServiceScreen from '../../screen/ProfileGroup/TermsOfServiceScreen';
 import PurchaseScreen from '../../screen/PurchanseHistoryGroup/PurchaseScreen';
 import RankScreen from '../../screen/ProfileGroup/RankScreen';
+import LogInScreen from '../../screen/AuthorizationGroup/LogInScreen';
+import SingUpScreen from '../../screen/AuthorizationGroup/SingUpScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,23 +29,27 @@ const AuthorizedUserStack = () => (
     <Stack.Screen
       name={screens.News}
       component={NewsScreen}
-      options={{headerTitle:'News'}}
+      options={{headerShown:false}}
     />
     <Stack.Screen
       name={screens.NewsItem}
       component={NewsItemScreen}
+      options={{headerShown:false}}
     />
     <Stack.Screen
       name={screens.OrderList}
       component={OrderListScreen}
+      options={{headerShown:false}}
     />
     <Stack.Screen
       name={screens.Product}
       component={ProductScreen}
+      options={{headerShown:false}}
     />
     <Stack.Screen
       name={screens.Favorite}
       component={FavoriteScreen}
+      options={{headerShown:false}}
     />
     <Stack.Screen
       name={screens.ProfileInfo}
@@ -60,6 +66,7 @@ const AuthorizedUserStack = () => (
     <Stack.Screen
       name={screens.TermsOfService}
       component={TermsOfServiceScreen}
+      options={{headerShown:false}}
     />
     <Stack.Screen
       name={screens.Language}
@@ -72,6 +79,14 @@ const AuthorizedUserStack = () => (
     <Stack.Screen
       name={screens.Purchase}
       component={PurchaseScreen}
+    />
+    <Stack.Screen
+      name={screens.SingUp}
+      component={SingUpScreen}
+    />
+    <Stack.Screen
+      name={screens.LogIn}
+      component={LogInScreen}
     />
   </Stack.Navigator>
 );

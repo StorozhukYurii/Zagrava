@@ -20,7 +20,9 @@ import {
 const persistConfig = {
   key: 'root',
   whitelist:[
-    'listings'
+    'listings',
+    'user',
+    'auth',
   ],
   storage: AsyncStorage,
 };

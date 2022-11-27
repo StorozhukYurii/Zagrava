@@ -22,6 +22,7 @@ import {onAddToCart} from '../../../store/cartSlice/cartSlice';
 import {onClearBasket} from '../../../store/listingsSlice/listingsSlice';
 import ListEmpty from '../../../components/ListEmpty';
 import screens from '../../../constants/screens';
+import Container from '../../../components/Container';
 
 const OrderListScreen = () => {
   useLayoutEffect(() => {
@@ -82,7 +83,8 @@ const OrderListScreen = () => {
   };
 
   return (
-    <View style={{paddingHorizontal: dimension.small, flex: 1}}>
+    <Container>
+      <HeaderLogo reverse goBack/>
       <FlatList
         data={displayedItem}
         keyExtractor={(item, index) => index}
@@ -116,7 +118,7 @@ const OrderListScreen = () => {
           </View>
         </>
       ) : null}
-    </View>
+    </Container>
   );
 };
 

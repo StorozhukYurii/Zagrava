@@ -1,0 +1,46 @@
+[
+    {
+      "name": "Ternopil",
+      "country": "Ukraine"
+    },
+    {
+      "name": "Kiyv",
+      "country": "Ukraine"
+    },
+    {
+      "name": "London",
+      "country": "England"
+    },
+    {
+      "name": "Paris",
+      "country": "France"
+    },
+    {
+      "name": "Frankfurt",
+      "country": "Germany"
+    },
+    {
+      "name": "Poznan",
+      "country": "Poland"
+    },
+    {
+      "name": "Oslo",
+      "country": "Norway"
+    },
+    {
+      "name": "Madrid",
+      "country": "Spain"
+    },
+    {
+      "name": "Villnus",
+      "country": "Estonia"
+    },
+    {
+      "name": "Amsterdam",
+      "country": "Netherland"
+    },
+    {
+      "name": "Stockholm",
+      "country": "Danmark"
+    }
+]

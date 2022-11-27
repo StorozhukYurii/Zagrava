@@ -6,6 +6,7 @@ export default {
     white: '#FFFFFF',
     silver: '#C0C0C0',
     darkGrey: '#A9A9A9',
+    haki:'#7a786a',
     dark: '#4a4126',
     gold: '#FFD700',
     red: 'red'

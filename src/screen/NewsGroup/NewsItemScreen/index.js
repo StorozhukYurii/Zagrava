@@ -5,22 +5,18 @@ import {Text, View, Image, StyleSheet, ScrollView} from 'react-native';
 import Separator from '../../../components/Separator';
 import {colors, dimension, fontSizes} from '../../../styles/index';
 import HeaderLogo from '../../../components/HeaderLogo';
+import Container from '../../../components/Container';
 
 const NewsItemScreen = ({route}) => {
   const navigation = useNavigation();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <HeaderLogo reverse />,
-      title: '',
-    });
-  });
 
   const {item} = route.params;
 
   return (
-    <>
+    <Container>
       <ScrollView>
+        <HeaderLogo reverse goBack/>
         <Image source={item.image} style={styles.image} resizeMode={'stretch'} />
         <View style={styles.textContainer}>
         <Text style={styles.date}>{item.date}</Text>  
@@ -59,7 +55,7 @@ const NewsItemScreen = ({route}) => {
         </Text>
         </View>
       </ScrollView>
-    </>
+    </Container>
   );
 };
 

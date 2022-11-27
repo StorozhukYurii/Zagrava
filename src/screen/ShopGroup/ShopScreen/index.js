@@ -24,6 +24,7 @@ import ListEmpty from '../../../components/ListEmpty';
 import ListingItems from './components/ItemList/ListingItems';
 import SingleItem from './components/ItemList/SingleItem';
 import { createSelector } from 'reselect';
+import { filteredItemSelector } from '../../../store/filterSlice/selector';
 
 
 export const ShopScreen = () => {
@@ -31,6 +32,7 @@ export const ShopScreen = () => {
 
     const initialFilterArray = useSelector(state => state.filter.initialFilter)
     const listings = useSelector(state => state.listings.listings)
+    const filteredListing = useSelector(filteredItemSelector);
 
     const [inputText, setInputText] = useState('')
     const [isSingleItem, setSingleItem] = useState(true);
@@ -45,17 +47,6 @@ export const ShopScreen = () => {
 
         return arr.filter(item => { return item.name.indexOf(txt) > -1 })
     }
-
-    const filteredItemSelector = createSelector(
-        state => state.listings.listings,
-        state => state.filter.initialFilter,
-        (list, filters) => {
-            return list.filter(item => filters.includes('Favorite') ? item.like === true : list)
-                .slice().sort((a, b) => (filters.includes('From a higher price') ? (a.price > b.price ? -1 : 1) : filters.includes('From a lower price') ? (a.price > b.price ? 1 : -1) : filters.includes('From a higher rating') ? (a.rating > b.rating ? -1 : 1) : filters.includes('From a lower rating') ? (a.rating > b.rating ? 1 : -1) : list))
-                .filter(item => filters.includes('Celtic god') ? item.type === 'Celtic god' : filters.includes('Wicca') ? item.type === 'Wicca' : filters.includes('Scandinavian god') ? item.type === 'Scandinavian god' : filters.includes('Sumerian') ? item.type === 'Sumerian' : filters.includes('Candel holders') ? item.type === 'Candel holders' : filters.includes('Ancient Greece') ? item.type === 'Ancient Greece' : list)
-                .filter(item => filters.includes('Oak') ? item.material === 'Oak' : filters.includes('Pine') ? item.material === 'Pine' : list)
-        },
-    );
     
     const onOpenOrderList = () => {
         navigation.navigate(screens.OrderList)
@@ -65,11 +56,15 @@ export const ShopScreen = () => {
         setSingleItem(!isSingleItem);
     };
 
+    const onClearInput = () => {
+        setInputText('')
+    }
+
     const ListHeader = () => {
         return (
             <View style={styles.listHeader}>
                 <Text style={styles.listHeaderText}>
-                    {filteredListing.length} listings found
+                    {filteredListingsResult.length} listings found
                 </Text>
                 <Pressable onPress={() => onToggleList()}>
                     <Ionicons
@@ -82,8 +77,7 @@ export const ShopScreen = () => {
         );
     };
 
-    const filteredListing = useSelector(filteredItemSelector);
-    let a = searchItem(filteredListing, inputText)
+    let filteredListingsResult = searchItem(filteredListing, inputText)
 
     return (
         <Container>
@@ -101,7 +95,7 @@ export const ShopScreen = () => {
                         autoCorrect={false}
                         onChangeText={(val) => setInputText(val)}
                     />
-                    <Pressable style={styles.close}>
+                    <Pressable style={styles.close} onPress={onClearInput}>
                         <Ionicons name={'backspace-outline'} size={24} />
                     </Pressable>
                 </View>
@@ -131,7 +125,7 @@ export const ShopScreen = () => {
             <View style={styles.containerI}>
                 <View style={{ flex: 1 }}>
                     <FlatList
-                        data={inputText.length === 0 ? filteredListing : a}
+                        data={inputText.length === 0 ? filteredListing : filteredListingsResult}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) =>
                             isSingleItem ? (
